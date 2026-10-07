@@ -89,10 +89,38 @@
             margin-top: 50px;
             color: #586775;
             font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #7fd8ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
 
         .radar-dot {
             color: #35d07f;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 35px 20px;
+            }
         }
     </style>
 </head>
@@ -155,11 +183,13 @@
         </div>
 
         <div class="footer">
-    <span class="radar-dot">●</span>
-    Built for Airside ATC • Microsoft Flight Simulator • OBS
-    <br><br>
-    <a href="privacy.html">Privacy Policy</a>
-</div>
+            <span class="radar-dot">●</span>
+            Built for Airside ATC • Microsoft Flight Simulator • OBS
+            <br><br>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+
+    </div>
 
 </body>
 </html>
