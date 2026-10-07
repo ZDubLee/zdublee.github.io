@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Site Verification -->
     <meta
         name="google-site-verification"
         content="0LrbdEzin5ZO05esG4fieLMdyRF_yNJyj-Z2mkfS2Ds"
-    />
+    >
 
+    <!-- Search / Social Description -->
     <meta
         name="description"
         content="ZDubLee's Airside Companion is a desktop companion application for flight simulation, virtual air traffic control, YouTube livestream integration, and OBS overlays."
     >
 
+    <!-- Favicon -->
     <link
         rel="icon"
         type="image/png"
@@ -24,6 +28,11 @@
     <title>ZDubLee's Airside Companion</title>
 
     <style>
+
+        /* =====================================================
+           GLOBAL
+           ===================================================== */
+
         * {
             box-sizing: border-box;
         }
@@ -35,7 +44,12 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background:
                 radial-gradient(
                     circle at top,
@@ -43,7 +57,17 @@
                     #070b10 45%,
                     #05080c 100%
                 );
+
             color: #e8f0f7;
+        }
+
+        a {
+            color: #7fd8ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .container {
@@ -54,14 +78,20 @@
             text-align: center;
         }
 
+        /* =====================================================
+           HEADER / HERO
+           ===================================================== */
+
         .logo {
             width: 190px;
             max-width: 60%;
             height: auto;
             margin-bottom: 25px;
+
             filter:
                 drop-shadow(
-                    0 0 18px rgba(127, 216, 255, 0.18)
+                    0 0 18px
+                    rgba(127, 216, 255, 0.18)
                 );
         }
 
@@ -69,12 +99,16 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+
             padding: 7px 15px;
             margin-bottom: 22px;
+
             border: 1px solid #35d07f;
             border-radius: 20px;
+
             color: #35d07f;
             background: rgba(53, 208, 127, 0.05);
+
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -83,36 +117,80 @@
         .status-dot {
             width: 8px;
             height: 8px;
+
             background: #35d07f;
             border-radius: 50%;
-            box-shadow: 0 0 10px #35d07f;
+
+            box-shadow:
+                0 0 10px
+                #35d07f;
         }
 
         h1 {
             margin: 0 0 12px;
+
             font-size: 50px;
             line-height: 1.1;
+
             color: #ffffff;
         }
 
         .subtitle {
+            margin-bottom: 28px;
+
             color: #7fd8ff;
             font-size: 21px;
-            margin-bottom: 28px;
         }
 
         .description {
             max-width: 780px;
-            margin: 0 auto 18px;
+
+            margin:
+                0
+                auto
+                18px;
+
             color: #aebbc7;
+
             font-size: 17px;
             line-height: 1.8;
+        }
+
+        /* =====================================================
+           GENERAL SECTIONS
+           ===================================================== */
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .section-title {
+            margin-bottom: 8px;
+
+            color: #ffffff;
+            font-size: 28px;
+        }
+
+        .section-description {
+            max-width: 760px;
+
+            margin:
+                0
+                auto
+                30px;
+
+            color: #7e8d99;
+            line-height: 1.7;
         }
 
         .divider {
             width: 120px;
             height: 1px;
-            margin: 45px auto;
+
+            margin:
+                45px
+                auto;
+
             background:
                 linear-gradient(
                     to right,
@@ -122,24 +200,9 @@
                 );
         }
 
-        .section {
-            margin-top: 20px;
-        }
-
-        .section-title {
-            margin-bottom: 8px;
-            color: #ffffff;
-            font-size: 28px;
-        }
-
-        .section-description {
-            max-width: 760px;
-            margin: 0 auto 30px;
-            color: #7e8d99;
-            line-height: 1.7;
-        }
-
-        /* RELEASES */
+        /* =====================================================
+           LATEST RELEASE
+           ===================================================== */
 
         .releases-section {
             margin-top: 45px;
@@ -147,44 +210,63 @@
 
         .releases-container {
             max-width: 850px;
-            margin: 30px auto 0;
+
+            margin:
+                30px
+                auto
+                0;
         }
 
         .release-card {
-            background: rgba(13, 20, 28, 0.92);
-            border: 1px solid #1d2b38;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 16px;
-            text-align: left;
-        }
+            padding: 26px;
 
-        .release-card.latest {
-            border-color: #31536b;
+            text-align: left;
+
+            background:
+                rgba(13, 20, 28, 0.92);
+
+            border:
+                1px solid
+                #31536b;
+
+            border-radius: 12px;
+
             box-shadow:
-                0 0 25px rgba(127, 216, 255, 0.05);
+                0 0 25px
+                rgba(127, 216, 255, 0.05);
         }
 
         .release-top {
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+            justify-content: space-between;
+
             gap: 15px;
+
             flex-wrap: wrap;
         }
 
         .release-title {
             margin: 0;
+
             color: #7fd8ff;
-            font-size: 21px;
+            font-size: 22px;
         }
 
         .latest-badge {
             display: inline-block;
-            padding: 5px 10px;
-            border: 1px solid #35d07f;
+
+            padding: 5px 11px;
+
+            border:
+                1px solid
+                #35d07f;
+
             border-radius: 15px;
+
             color: #35d07f;
+
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -192,34 +274,50 @@
 
         .release-date {
             margin-top: 8px;
+
             color: #677786;
             font-size: 13px;
         }
 
         .release-description {
-            margin-top: 16px;
+            margin-top: 17px;
+
             color: #aebbc7;
-            line-height: 1.65;
+
             font-size: 14px;
+            line-height: 1.65;
         }
 
         .release-actions {
-            margin-top: 20px;
             display: flex;
+
             gap: 10px;
+
+            margin-top: 22px;
+
             flex-wrap: wrap;
         }
 
         .release-button {
             display: inline-block;
-            padding: 10px 17px;
-            border: 1px solid #31536b;
+
+            padding: 11px 18px;
+
+            border:
+                1px solid
+                #31536b;
+
             border-radius: 7px;
+
             background: #162532;
+
             color: #7fd8ff;
-            text-decoration: none;
+
             font-size: 14px;
             font-weight: bold;
+
+            text-decoration: none;
+
             transition:
                 background 0.2s ease,
                 border-color 0.2s ease,
@@ -228,14 +326,20 @@
 
         .release-button:hover {
             background: #1d3344;
+
             border-color: #4c7693;
+
             text-decoration: none;
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
         }
 
         .release-button.primary {
             background: #123021;
+
             border-color: #35d07f;
+
             color: #70e5a2;
         }
 
@@ -244,42 +348,69 @@
         }
 
         .release-loading {
-            color: #7e8d99;
             padding: 25px;
+
+            color: #7e8d99;
         }
 
-        /* DISCORD */
+        /* =====================================================
+           DISCORD
+           ===================================================== */
 
         .discord-section {
             margin-top: 45px;
+
             padding: 30px;
-            background: rgba(13, 20, 28, 0.9);
-            border: 1px solid #1d2b38;
+
+            background:
+                rgba(13, 20, 28, 0.9);
+
+            border:
+                1px solid
+                #1d2b38;
+
             border-radius: 12px;
         }
 
         .discord-section h2 {
             margin-top: 0;
+
             color: #ffffff;
             font-size: 26px;
         }
 
         .discord-section p {
             max-width: 720px;
-            margin: 0 auto 22px;
+
+            margin:
+                0
+                auto
+                22px;
+
             color: #aebbc7;
+
             line-height: 1.7;
         }
 
         .discord-button {
             display: inline-block;
+
             padding: 11px 19px;
+
             background: #162532;
-            border: 1px solid #31536b;
+
+            border:
+                1px solid
+                #31536b;
+
             border-radius: 7px;
+
             color: #7fd8ff;
+
             font-weight: bold;
+
             text-decoration: none;
+
             transition:
                 background 0.2s ease,
                 border-color 0.2s ease,
@@ -288,27 +419,47 @@
 
         .discord-button:hover {
             background: #1d3344;
+
             border-color: #4c7693;
+
             text-decoration: none;
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
         }
 
-        /* FEATURE CARDS */
+        /* =====================================================
+           FEATURE CARDS
+           ===================================================== */
 
         .features {
             display: grid;
+
             grid-template-columns:
-                repeat(2, minmax(0, 1fr));
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
             gap: 18px;
+
             margin-top: 30px;
+
             text-align: left;
         }
 
         .feature {
-            background: rgba(13, 20, 28, 0.9);
-            border: 1px solid #1d2b38;
-            border-radius: 12px;
             padding: 24px;
+
+            background:
+                rgba(13, 20, 28, 0.9);
+
+            border:
+                1px solid
+                #1d2b38;
+
+            border-radius: 12px;
+
             transition:
                 transform 0.2s ease,
                 border-color 0.2s ease,
@@ -316,42 +467,64 @@
         }
 
         .feature:hover {
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px);
+
             border-color: #31536b;
+
             background: #101923;
         }
 
         .feature h3 {
-            margin: 0 0 10px;
+            margin:
+                0
+                0
+                10px;
+
             color: #7fd8ff;
+
             font-size: 18px;
         }
 
         .feature p {
             margin: 0;
+
             color: #8e9ba7;
+
             font-size: 14px;
             line-height: 1.65;
         }
 
-        /* YOUTUBE */
+        /* =====================================================
+           GOOGLE / YOUTUBE
+           ===================================================== */
 
         .youtube-section {
             margin-top: 50px;
+
             padding: 32px;
+
             text-align: left;
-            background: rgba(13, 20, 28, 0.92);
-            border: 1px solid #263a49;
+
+            background:
+                rgba(13, 20, 28, 0.92);
+
+            border:
+                1px solid
+                #263a49;
+
             border-radius: 14px;
         }
 
         .youtube-section h2 {
             margin-top: 0;
+
             color: #ffffff;
         }
 
         .youtube-section p {
             color: #aebbc7;
+
             line-height: 1.75;
         }
 
@@ -359,38 +532,65 @@
             color: #ffffff;
         }
 
+        /* =====================================================
+           NOTICES
+           ===================================================== */
+
         .notice {
             margin-top: 45px;
+
             padding: 25px;
-            background: rgba(13, 20, 28, 0.7);
-            border: 1px solid #1d2b38;
+
+            background:
+                rgba(13, 20, 28, 0.7);
+
+            border:
+                1px solid
+                #1d2b38;
+
             border-radius: 12px;
         }
 
         .notice h2 {
             margin-top: 0;
+
             color: #ffffff;
+
             font-size: 24px;
         }
 
         .notice p {
             margin-bottom: 0;
+
             color: #8e9ba7;
+
             line-height: 1.7;
         }
 
         .legal-notice {
             margin-top: 25px;
+
             color: #657482;
+
             font-size: 13px;
             line-height: 1.7;
         }
 
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
         .footer {
             margin-top: 60px;
+
             padding-top: 30px;
-            border-top: 1px solid #18232d;
+
+            border-top:
+                1px solid
+                #18232d;
+
             color: #586775;
+
             font-size: 13px;
             line-height: 1.8;
         }
@@ -407,24 +607,25 @@
             margin: 8px 0;
         }
 
-        a {
-            color: #7fd8ff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
         .separator {
             margin: 0 8px;
+
             color: #394957;
         }
 
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
         @media (max-width: 700px) {
+
             .container {
                 width: 94%;
-                padding: 40px 18px 30px;
+
+                padding:
+                    40px
+                    18px
+                    30px;
             }
 
             .logo {
@@ -460,24 +661,32 @@
             }
 
             .release-button {
-                text-align: center;
                 width: 100%;
+
+                text-align: center;
             }
 
             .discord-section {
-                padding: 24px 20px;
+                padding:
+                    24px
+                    20px;
             }
 
             .discord-button {
                 width: 100%;
             }
         }
+
     </style>
 </head>
 
 <body>
 
 <main class="container">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
 
     <img
         src="IconOnly_Transparent.png"
@@ -488,66 +697,89 @@
     <br>
 
     <div class="status">
+
         <span class="status-dot"></span>
+
         Airside Companion
+
     </div>
 
-    <h1>ZDubLee's Airside Companion</h1>
+    <h1>
+        ZDubLee's Airside Companion
+    </h1>
 
     <div class="subtitle">
         ATC Companion • YouTube Integration • OBS Overlays
     </div>
 
     <p class="description">
+
         ZDubLee's Airside Companion is a desktop companion
         application for flight simulation, virtual air traffic
         control, livestreaming, and content creation.
+
     </p>
 
     <p class="description">
+
         The application works alongside Airside ATC and
         Microsoft Flight Simulator to provide useful airport,
         simulator, traffic, weather, ATC, and streaming
         information through a companion interface and
         OBS-compatible browser overlays.
+
     </p>
 
-    <!-- RELEASES -->
+    <!-- =====================================================
+         LATEST RELEASE
+         ===================================================== -->
 
     <section class="releases-section">
 
         <h2 class="section-title">
-            Latest Releases
+            Latest Release
         </h2>
 
         <p class="section-description">
-            Download the latest versions of
+
+            Download the newest version of
             ZDubLee's Airside Companion.
+
         </p>
 
         <div
             id="releases"
             class="releases-container"
         >
+
             <div class="release-loading">
-                Loading releases...
+                Loading latest release...
             </div>
+
         </div>
 
     </section>
 
-    <!-- DISCORD SUPPORT -->
+    <!-- =====================================================
+         DISCORD SUPPORT
+         ===================================================== -->
 
     <section class="discord-section">
 
-        <h2>Community Support</h2>
+        <h2>
+            Community Support
+        </h2>
 
         <p>
+
             Need help with ZDubLee's Airside Companion,
-            have an idea for a new feature, or run into a problem?
+            have an idea for a new feature, or run into a
+            problem?
+
             Join the Discord community for troubleshooting,
             feedback, feature requests, application updates,
             and discussion with other users.
+
         </p>
 
         <a
@@ -563,7 +795,9 @@
 
     <div class="divider"></div>
 
-    <!-- FEATURES -->
+    <!-- =====================================================
+         FEATURES
+         ===================================================== -->
 
     <section class="section">
 
@@ -572,78 +806,118 @@
         </h2>
 
         <p class="section-description">
+
             Airside Companion brings simulator, airport,
             controller, and livestream information together
             in one stream-friendly application.
+
         </p>
 
         <div class="features">
 
             <div class="feature">
-                <h3>Airport Information</h3>
+
+                <h3>
+                    Airport Information
+                </h3>
 
                 <p>
+
                     View airport information, active runways,
                     frequencies, session information, and
                     other useful virtual ATC data.
+
                 </p>
+
             </div>
 
             <div class="feature">
-                <h3>OBS Browser Overlays</h3>
+
+                <h3>
+                    OBS Browser Overlays
+                </h3>
 
                 <p>
+
                     Display selected information through
                     browser-source overlays designed for OBS
                     and flight simulation livestreams.
+
                 </p>
+
             </div>
 
             <div class="feature">
-                <h3>Live Simulator Data</h3>
+
+                <h3>
+                    Live Simulator Data
+                </h3>
 
                 <p>
+
                     Update supported airport, aircraft,
                     traffic, and session information as the
                     simulator environment changes.
+
                 </p>
+
             </div>
 
             <div class="feature">
-                <h3>Weather &amp; ATIS</h3>
+
+                <h3>
+                    Weather &amp; ATIS
+                </h3>
 
                 <p>
+
                     Display supported airport weather and
                     ATIS information for the active virtual
                     ATC session.
+
                 </p>
+
             </div>
 
             <div class="feature">
-                <h3>Tower Radar</h3>
+
+                <h3>
+                    Tower Radar
+                </h3>
 
                 <p>
+
                     Radar-style traffic displays provide
                     additional situational awareness for
                     virtual controllers.
+
                 </p>
+
             </div>
 
             <div class="feature">
-                <h3>Ground Radar</h3>
+
+                <h3>
+                    Ground Radar
+                </h3>
 
                 <p>
+
                     View supported aircraft movement on and
                     around airport surfaces in a dedicated
                     ground display.
+
                 </p>
+
             </div>
 
         </div>
 
     </section>
 
-    <!-- YOUTUBE -->
+    <!-- =====================================================
+         GOOGLE / YOUTUBE INTEGRATION
+         ===================================================== -->
 
     <section class="youtube-section">
 
@@ -652,24 +926,34 @@
         </h2>
 
         <p>
+
             Users may optionally connect their Google and
             YouTube accounts to ZDubLee's Airside Companion.
+
             Connecting a Google account is not required for
             the application's core flight simulation and
             virtual ATC features.
+
         </p>
 
         <p>
+
             When a user chooses to connect YouTube,
+
             <strong>
+
                 ZDubLee's Airside Companion uses Google OAuth
                 and YouTube API Services
+
             </strong>
+
             to identify the authorized YouTube channel and
             provide supported livestream features.
+
         </p>
 
         <p>
+
             Depending on the features enabled and permissions
             granted by the user, these features may include
             displaying YouTube livestream information, live
@@ -677,33 +961,45 @@
             statistics made available by YouTube, Super Chats,
             Super Stickers, channel memberships, and related
             livestream activity.
+
         </p>
 
         <p>
+
             This information is used to provide livestream
             tools within Airside Companion and, when the user
             chooses, to display selected information through
             OBS overlays during their livestream.
+
         </p>
 
         <p>
+
             Airside Companion only requests Google and
             YouTube permissions needed for the features
-            enabled by the user. Users can disconnect their
-            account and revoke access at any time.
+            enabled by the user.
+
+            Users can disconnect their account and revoke
+            access at any time.
+
         </p>
 
         <p>
+
             For complete information about how Google and
             YouTube data is handled, please review our
+
             <a href="privacy.html">
                 Privacy Policy
             </a>.
+
         </p>
 
     </section>
 
-    <!-- SIMULATION DISCLAIMER -->
+    <!-- =====================================================
+         SIMULATION DISCLAIMER
+         ===================================================== -->
 
     <section class="notice">
 
@@ -712,16 +1008,22 @@
         </h2>
 
         <p>
+
             ZDubLee's Airside Companion is designed exclusively
             for flight simulation, virtual air traffic control,
-            livestreaming, and entertainment. It is not intended
-            or approved for real-world aircraft navigation,
-            dispatch, weather decisions, or air traffic control.
+            livestreaming, and entertainment.
+
+            It is not intended or approved for real-world
+            aircraft navigation, dispatch, weather decisions,
+            or air traffic control.
+
         </p>
 
     </section>
 
-    <!-- DEVELOPMENT -->
+    <!-- =====================================================
+         DEVELOPMENT STATUS
+         ===================================================== -->
 
     <section class="notice">
 
@@ -730,29 +1032,44 @@
         </h2>
 
         <p>
+
             ZDubLee's Airside Companion is actively being
-            developed. Features, integrations, overlay options,
-            and controller tools may change as development
+            developed.
+
+            Features, integrations, overlay options, and
+            controller tools may change as development
             continues.
+
         </p>
 
     </section>
 
     <p class="legal-notice">
+
         ZDubLee's Airside Companion is an independent companion
         application and is not sponsored, endorsed, or operated
         by Google, YouTube, Microsoft, OBS Project, or Airside
-        unless expressly stated otherwise. All third-party
-        trademarks belong to their respective owners.
+        unless expressly stated otherwise.
+
+        All third-party trademarks belong to their respective
+        owners.
+
     </p>
 
-    <!-- FOOTER -->
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
     <footer class="footer">
 
         <div class="footer-main">
-            <span class="footer-dot">●</span>
+
+            <span class="footer-dot">
+                ●
+            </span>
+
             ZDubLee's Airside Companion
+
         </div>
 
         <div class="footer-links">
@@ -761,13 +1078,17 @@
                 Privacy Policy
             </a>
 
-            <span class="separator">•</span>
+            <span class="separator">
+                •
+            </span>
 
             <a href="terms.html">
                 Terms of Service
             </a>
 
-            <span class="separator">•</span>
+            <span class="separator">
+                •
+            </span>
 
             <a
                 href="https://discord.gg/j5czsStyBx"
@@ -777,7 +1098,9 @@
                 Discord Support
             </a>
 
-            <span class="separator">•</span>
+            <span class="separator">
+                •
+            </span>
 
             <a
                 href="https://www.youtube.com/t/terms"
@@ -797,251 +1120,369 @@
 
 </main>
 
-<!-- GITHUB RELEASES -->
+
+<!-- =========================================================
+     LATEST GITHUB RELEASE
+     ========================================================= -->
 
 <script>
-    const githubOwner = "ZDubLee";
-    const githubRepo = "zdublee.github.io";
+
+    /*
+        GitHub Repository
+    */
+
+    const githubOwner =
+        "ZDubLee";
+
+    const githubRepo =
+        "zdublee.github.io";
+
+
+    /*
+        This filename MUST remain the same on every
+        GitHub release:
+
+        Airside-Stream-Companion-PORTABLE.zip
+    */
+
+    const latestPortableDownload =
+        "https://github.com/ZDubLee/zdublee.github.io/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip";
+
 
     const releasesContainer =
         document.getElementById("releases");
 
-    async function loadReleases() {
+
+    /*
+        Load ONLY GitHub's latest published release.
+    */
+
+    async function loadLatestRelease() {
 
         try {
 
-            const response = await fetch(
-                `https://api.github.com/repos/${githubOwner}/${githubRepo}/releases`
-            );
+            const response =
+                await fetch(
 
-            if (!response.ok) {
-                throw new Error(
-                    "Unable to retrieve GitHub releases."
-                );
-            }
+                    `https://api.github.com/repos/${githubOwner}/${githubRepo}/releases/latest`,
 
-            const releases = await response.json();
+                    {
 
-            if (!Array.isArray(releases) || releases.length === 0) {
+                        headers: {
 
-                releasesContainer.innerHTML = `
-                    <div class="release-card">
-                        <h3 class="release-title">
-                            No releases available yet
-                        </h3>
+                            "Accept":
+                                "application/vnd.github+json"
 
-                        <div class="release-description">
-                            The first public release of
-                            ZDubLee's Airside Companion
-                            will appear here when available.
-                        </div>
-                    </div>
-                `;
+                        }
 
-                return;
-            }
-
-            releasesContainer.innerHTML = "";
-
-            releases
-                .filter(release => !release.draft)
-                .slice(0, 3)
-                .forEach((release, index) => {
-
-                    const card =
-                        document.createElement("div");
-
-                    card.className =
-                        index === 0
-                            ? "release-card latest"
-                            : "release-card";
-
-                    const releaseDate =
-                        release.published_at
-                            ? new Date(
-                                release.published_at
-                              ).toLocaleDateString(
-                                undefined,
-                                {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric"
-                                }
-                              )
-                            : "Release date unavailable";
-
-                    const releaseName =
-                        escapeHtml(
-                            release.name ||
-                            release.tag_name ||
-                            "Airside Companion Release"
-                        );
-
-                    const description =
-                        formatReleaseBody(
-                            release.body
-                        );
-
-                    let downloadUrl =
-                        release.html_url;
-
-                    let downloadText =
-                        index === 0
-                            ? "View Latest Release"
-                            : "View Release";
-
-                    if (
-                        release.assets &&
-                        release.assets.length > 0
-                    ) {
-
-                        downloadUrl =
-                            release.assets[0]
-                                .browser_download_url;
-
-                        downloadText =
-                            index === 0
-                                ? "Download Latest Release"
-                                : "Download";
                     }
 
-                    card.innerHTML = `
+                );
 
-                        <div class="release-top">
 
-                            <h3 class="release-title">
-                                ${releaseName}
-                            </h3>
+            if (!response.ok) {
 
-                            ${
-                                index === 0
-                                    ? `
-                                        <span class="latest-badge">
-                                            Latest
-                                        </span>
-                                      `
-                                    : ""
-                            }
+                throw new Error(
+                    "Unable to retrieve latest release."
+                );
 
-                        </div>
+            }
 
-                        <div class="release-date">
-                            Released ${releaseDate}
-                        </div>
 
-                        <div class="release-description">
-                            ${description}
-                        </div>
+            const release =
+                await response.json();
 
-                        <div class="release-actions">
 
-                            <a
-                                href="${downloadUrl}"
-                                class="release-button ${
-                                    index === 0
-                                        ? "primary"
-                                        : ""
-                                }"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                ${downloadText}
-                            </a>
+            /*
+                Release date
+            */
 
-                            <a
-                                href="${release.html_url}"
-                                class="release-button"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Release Notes
-                            </a>
+            const releaseDate =
+                release.published_at
 
-                        </div>
-                    `;
+                    ? new Date(
+                        release.published_at
+                      )
+                      .toLocaleDateString(
 
-                    releasesContainer
-                        .appendChild(card);
+                          undefined,
 
-                });
+                          {
 
-        } catch (error) {
+                              year:
+                                  "numeric",
 
-            console.error(
-                "GitHub release loading error:",
-                error
-            );
+                              month:
+                                  "long",
+
+                              day:
+                                  "numeric"
+
+                          }
+
+                      )
+
+                    : "Release date unavailable";
+
+
+            /*
+                Release title
+            */
+
+            const releaseName =
+                escapeHtml(
+
+                    release.name ||
+
+                    release.tag_name ||
+
+                    "Latest Release"
+
+                );
+
+
+            /*
+                Release notes
+            */
+
+            const description =
+                formatReleaseBody(
+                    release.body
+                );
+
+
+            /*
+                Build latest release card
+            */
 
             releasesContainer.innerHTML = `
+
                 <div class="release-card">
 
-                    <h3 class="release-title">
-                        Releases Temporarily Unavailable
-                    </h3>
+                    <div class="release-top">
+
+                        <h3 class="release-title">
+
+                            ${releaseName}
+
+                        </h3>
+
+                        <span class="latest-badge">
+
+                            Latest
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="release-date">
+
+                        Released ${releaseDate}
+
+                    </div>
+
 
                     <div class="release-description">
-                        GitHub release information could not
-                        be loaded right now. Please visit the
-                        GitHub repository for the latest
-                        version.
+
+                        ${description}
+
                     </div>
+
 
                     <div class="release-actions">
 
                         <a
-                            href="https://github.com/${githubOwner}/${githubRepo}/releases"
+                            href="${latestPortableDownload}"
+                            class="release-button primary"
+                        >
+
+                            Download Latest Release
+
+                        </a>
+
+
+                        <a
+                            href="${release.html_url}"
                             class="release-button"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            View Releases on GitHub
+
+                            Full Release Notes
+
                         </a>
 
                     </div>
 
                 </div>
+
             `;
+
         }
+
+
+        catch (error) {
+
+            console.error(
+
+                "GitHub release loading error:",
+
+                error
+
+            );
+
+
+            /*
+                Fallback if GitHub's API cannot load.
+
+                The download button still uses GitHub's
+                permanent latest-release download URL.
+            */
+
+            releasesContainer.innerHTML = `
+
+                <div class="release-card">
+
+                    <div class="release-top">
+
+                        <h3 class="release-title">
+
+                            Latest Release
+
+                        </h3>
+
+                        <span class="latest-badge">
+
+                            Latest
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="release-description">
+
+                        Release information could not be
+                        loaded right now, but the latest
+                        portable version is still available
+                        for download.
+
+                    </div>
+
+
+                    <div class="release-actions">
+
+                        <a
+                            href="${latestPortableDownload}"
+                            class="release-button primary"
+                        >
+
+                            Download Latest Release
+
+                        </a>
+
+
+                        <a
+                            href="https://github.com/${githubOwner}/${githubRepo}/releases/latest"
+                            class="release-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            View Release on GitHub
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
     }
+
+
+    /*
+        Prevent release titles / notes from inserting
+        HTML into the website.
+    */
 
     function escapeHtml(text) {
 
         const element =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         element.textContent =
             text || "";
 
         return element.innerHTML;
+
     }
+
+
+    /*
+        Format the release notes for the homepage.
+    */
 
     function formatReleaseBody(body) {
 
         if (!body) {
-            return "View the release notes on GitHub for details.";
+
+            return (
+                "View the full release notes on GitHub for details."
+            );
+
         }
 
+
         const safeText =
-            escapeHtml(body);
+            escapeHtml(
+                body
+            );
 
-        const maximumLength = 700;
 
-        let shortened =
-            safeText.length > maximumLength
+        /*
+            Prevent very long release notes from
+            taking over the homepage.
+        */
+
+        const maximumLength =
+            700;
+
+
+        const shortened =
+            safeText.length >
+            maximumLength
+
                 ? safeText.substring(
                     0,
                     maximumLength
                   ) + "..."
+
                 : safeText;
+
 
         return shortened.replace(
             /\n/g,
             "<br>"
         );
+
     }
 
-    loadReleases();
+
+    /*
+        Start loading the latest release.
+    */
+
+    loadLatestRelease();
+
 </script>
 
 </body>
+
 </html>
