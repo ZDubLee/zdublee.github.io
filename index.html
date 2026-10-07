@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="google-site-verification" content="0LrbdEzin5ZO05esG4fieLMdyRF_yNJyj-Z2mkfS2Ds" />
+
+    <meta
+        name="description"
+        content="Airside Companion Overlay is a real-time ATC companion application with OBS-ready overlays for flight simulation streaming."
+    >
 
     <title>Airside Companion Overlay</title>
 
@@ -13,85 +18,179 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            background: #070b10;
+            background:
+                radial-gradient(circle at top, #101d28 0%, #070b10 45%, #05080c 100%);
             color: #e8f0f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .container {
             width: 90%;
-            max-width: 900px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 30px 40px;
             text-align: center;
-            padding: 50px 30px;
+        }
+
+        .logo {
+            width: 190px;
+            max-width: 60%;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 18px rgba(127, 216, 255, 0.18));
         }
 
         .status {
-            display: inline-block;
-            padding: 6px 14px;
-            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 15px;
+            margin-bottom: 22px;
             border: 1px solid #35d07f;
             border-radius: 20px;
             color: #35d07f;
+            background: rgba(53, 208, 127, 0.05);
             font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #35d07f;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #35d07f;
         }
 
         h1 {
-            font-size: 48px;
-            margin: 0 0 10px;
+            margin: 0 0 12px;
+            font-size: 50px;
+            line-height: 1.1;
+            color: #ffffff;
         }
 
         .subtitle {
             color: #7fd8ff;
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 21px;
+            margin-bottom: 28px;
         }
 
         .description {
-            max-width: 700px;
-            margin: 0 auto 40px;
+            max-width: 760px;
+            margin: 0 auto;
             color: #aebbc7;
             font-size: 17px;
-            line-height: 1.7;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 120px;
+            height: 1px;
+            margin: 40px auto;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #2c4659,
+                transparent
+            );
+        }
+
+        .section-title {
+            margin-bottom: 8px;
+            font-size: 28px;
+            color: #ffffff;
+        }
+
+        .section-description {
+            color: #7e8d99;
+            margin-bottom: 30px;
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 40px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 30px;
+            text-align: left;
         }
 
         .feature {
-            background: #0d141c;
+            background: rgba(13, 20, 28, 0.9);
             border: 1px solid #1d2b38;
-            border-radius: 10px;
-            padding: 22px;
+            border-radius: 12px;
+            padding: 24px;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-3px);
+            border-color: #31536b;
+            background: #101923;
         }
 
         .feature h3 {
+            margin: 0 0 10px;
             color: #7fd8ff;
-            margin-top: 0;
+            font-size: 18px;
         }
 
         .feature p {
+            margin: 0;
             color: #8e9ba7;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.65;
+        }
+
+        .coming-soon {
+            margin-top: 45px;
+            padding: 25px;
+            background: rgba(13, 20, 28, 0.7);
+            border: 1px solid #1d2b38;
+            border-radius: 12px;
+        }
+
+        .coming-soon h2 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        .coming-soon p {
+            margin-bottom: 0;
+            color: #8e9ba7;
+            line-height: 1.7;
         }
 
         .footer {
-            margin-top: 50px;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #18232d;
             color: #586775;
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.8;
+        }
+
+        .footer-main {
+            margin-bottom: 12px;
+        }
+
+        .footer-dot {
+            color: #35d07f;
+        }
+
+        .footer-links {
+            margin-top: 8px;
         }
 
         .footer a {
@@ -103,11 +202,21 @@
             text-decoration: underline;
         }
 
-        .radar-dot {
-            color: #35d07f;
+        .separator {
+            margin: 0 8px;
+            color: #394957;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
+            .container {
+                width: 94%;
+                padding: 40px 18px 30px;
+            }
+
+            .logo {
+                width: 150px;
+            }
+
             h1 {
                 font-size: 36px;
             }
@@ -120,8 +229,12 @@
                 font-size: 16px;
             }
 
-            .container {
-                padding: 35px 20px;
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 24px;
             }
         }
     </style>
@@ -129,10 +242,19 @@
 
 <body>
 
-    <div class="container">
+    <main class="container">
+
+        <img
+            src="IconOnly_Transparent.png"
+            alt="Airside Companion Overlay Logo"
+            class="logo"
+        >
+
+        <br>
 
         <div class="status">
-            ● Airside Companion
+            <span class="status-dot"></span>
+            Airside Companion
         </div>
 
         <h1>Airside Companion Overlay</h1>
@@ -144,58 +266,107 @@
         <p class="description">
             Airside Companion Overlay is a companion application designed for
             Airside ATC and Microsoft Flight Simulator. It provides clean,
-            stream-ready airport information through transparent browser overlays
+            stream-ready airport information through browser-based overlays
             that can be added directly to OBS.
         </p>
 
-        <div class="features">
+        <div class="divider"></div>
 
-            <div class="feature">
-                <h3>Airport Information</h3>
-                <p>
-                    Display the active airport, runways, frequencies,
-                    session information, and other important ATC data.
-                </p>
+        <section>
+
+            <h2 class="section-title">Built for the Virtual Controller</h2>
+
+            <p class="section-description">
+                Important ATC and simulator information presented in a clean,
+                stream-friendly format.
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    <h3>Airport Information</h3>
+                    <p>
+                        Display airport information, active runways, frequencies,
+                        session details, and other useful controller information.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>OBS Browser Overlays</h3>
+                    <p>
+                        Purpose-built browser source overlays designed to fit
+                        naturally into ATC and flight simulation livestreams.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Live Data</h3>
+                    <p>
+                        Automatically update information as your simulator and
+                        Airside session change.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Weather &amp; ATIS</h3>
+                    <p>
+                        Designed to support useful airport weather and ATIS
+                        information directly inside the companion experience.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Tower Radar</h3>
+                    <p>
+                        Radar-style traffic displays designed to give controllers
+                        an improved view of aircraft operating around the airport.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Ground Radar</h3>
+                    <p>
+                        Ground traffic visualization designed to help monitor
+                        aircraft movement across airport surfaces.
+                    </p>
+                </div>
+
             </div>
 
-            <div class="feature">
-                <h3>OBS Overlays</h3>
-                <p>
-                    Purpose-built browser source overlays designed to fit
-                    naturally into flight simulation and ATC livestreams.
-                </p>
+        </section>
+
+        <section class="coming-soon">
+            <h2>Development in Progress</h2>
+
+            <p>
+                Airside Companion Overlay is actively being developed.
+                Features, integrations, overlay options, and controller tools
+                will continue to expand as the application evolves.
+            </p>
+        </section>
+
+        <footer class="footer">
+
+            <div class="footer-main">
+                <span class="footer-dot">●</span>
+                Built for Airside ATC • Microsoft Flight Simulator • OBS
             </div>
 
-            <div class="feature">
-                <h3>Live Data</h3>
-                <p>
-                    Automatically update overlay information as your
-                    Airside session and simulator environment change.
-                </p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+
+                <span class="separator">•</span>
+
+                <a href="terms.html">Terms of Service</a>
             </div>
 
-            <div class="feature">
-                <h3>ATC Tools</h3>
-                <p>
-                    Built to expand with weather, ATIS, traffic monitoring,
-                    tower radar, ground radar, and additional controller tools.
-                </p>
+            <div>
+                © 2026 Airside Companion Overlay
             </div>
 
-        </div>
+        </footer>
 
-        <div class="footer">
-    <span class="radar-dot">●</span>
-    Built for Airside ATC • Microsoft Flight Simulator • OBS
-
-    <br><br>
-
-    <a href="privacy.html">Privacy Policy</a>
-    &nbsp;•&nbsp;
-    <a href="terms.html">Terms of Service</a>
-</div>
-
-    </div>
+    </main>
 
 </body>
 </html>
