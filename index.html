@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Airside Companion Overlay</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070b10;
+            color: #e8f0f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 14px;
+            margin-bottom: 20px;
+            border: 1px solid #35d07f;
+            border-radius: 20px;
+            color: #35d07f;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 0 0 10px;
+        }
+
+        .subtitle {
+            color: #7fd8ff;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #aebbc7;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: #0d141c;
+            border: 1px solid #1d2b38;
+            border-radius: 10px;
+            padding: 22px;
+        }
+
+        .feature h3 {
+            color: #7fd8ff;
+            margin-top: 0;
+        }
+
+        .feature p {
+            color: #8e9ba7;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: #586775;
+            font-size: 13px;
+        }
+
+        .radar-dot {
+            color: #35d07f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="status">
+            ● Airside Companion
+        </div>
+
+        <h1>Airside Companion Overlay</h1>
+
+        <div class="subtitle">
+            Real-Time ATC Information for Your Flight Simulation Stream
+        </div>
+
+        <p class="description">
+            Airside Companion Overlay is a companion application designed for
+            Airside ATC and Microsoft Flight Simulator. It provides clean,
+            stream-ready airport information through transparent browser overlays
+            that can be added directly to OBS.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <h3>Airport Information</h3>
+                <p>
+                    Display the active airport, runways, frequencies,
+                    session information, and other important ATC data.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>OBS Overlays</h3>
+                <p>
+                    Purpose-built browser source overlays designed to fit
+                    naturally into flight simulation and ATC livestreams.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Live Data</h3>
+                <p>
+                    Automatically update overlay information as your
+                    Airside session and simulator environment change.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>ATC Tools</h3>
+                <p>
+                    Built to expand with weather, ATIS, traffic monitoring,
+                    tower radar, ground radar, and additional controller tools.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <span class="radar-dot">●</span>
+            Built for Airside ATC • Microsoft Flight Simulator • OBS
+        </div>
+
+    </div>
+
+</body>
+</html>
+Create index.html
