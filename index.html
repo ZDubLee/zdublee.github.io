@@ -248,6 +248,51 @@
             padding: 25px;
         }
 
+        /* DISCORD */
+
+        .discord-section {
+            margin-top: 45px;
+            padding: 30px;
+            background: rgba(13, 20, 28, 0.9);
+            border: 1px solid #1d2b38;
+            border-radius: 12px;
+        }
+
+        .discord-section h2 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 26px;
+        }
+
+        .discord-section p {
+            max-width: 720px;
+            margin: 0 auto 22px;
+            color: #aebbc7;
+            line-height: 1.7;
+        }
+
+        .discord-button {
+            display: inline-block;
+            padding: 11px 19px;
+            background: #162532;
+            border: 1px solid #31536b;
+            border-radius: 7px;
+            color: #7fd8ff;
+            font-weight: bold;
+            text-decoration: none;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .discord-button:hover {
+            background: #1d3344;
+            border-color: #4c7693;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
         /* FEATURE CARDS */
 
         .features {
@@ -289,7 +334,7 @@
             line-height: 1.65;
         }
 
-        /* YOUTUBE SECTION */
+        /* YOUTUBE */
 
         .youtube-section {
             margin-top: 50px;
@@ -377,7 +422,6 @@
         }
 
         @media (max-width: 700px) {
-
             .container {
                 width: 94%;
                 padding: 40px 18px 30px;
@@ -417,6 +461,14 @@
 
             .release-button {
                 text-align: center;
+                width: 100%;
+            }
+
+            .discord-section {
+                padding: 24px 20px;
+            }
+
+            .discord-button {
                 width: 100%;
             }
         }
@@ -481,6 +533,31 @@
                 Loading releases...
             </div>
         </div>
+
+    </section>
+
+    <!-- DISCORD SUPPORT -->
+
+    <section class="discord-section">
+
+        <h2>Community Support</h2>
+
+        <p>
+            Need help with ZDubLee's Airside Companion,
+            have an idea for a new feature, or run into a problem?
+            Join the Discord community for troubleshooting,
+            feedback, feature requests, application updates,
+            and discussion with other users.
+        </p>
+
+        <a
+            href="https://discord.gg/j5czsStyBx"
+            class="discord-button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Join the Discord
+        </a>
 
     </section>
 
@@ -693,6 +770,16 @@
             <span class="separator">•</span>
 
             <a
+                href="https://discord.gg/j5czsStyBx"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Discord Support
+            </a>
+
+            <span class="separator">•</span>
+
+            <a
                 href="https://www.youtube.com/t/terms"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -714,11 +801,6 @@
 
 <script>
     const githubOwner = "ZDubLee";
-
-    /*
-        If Airside Companion releases are published in a
-        different repository, change only this line.
-    */
     const githubRepo = "zdublee.github.io";
 
     const releasesContainer =
@@ -761,9 +843,6 @@
 
             releasesContainer.innerHTML = "";
 
-            /*
-                Display the three newest releases.
-            */
             releases
                 .filter(release => !release.draft)
                 .slice(0, 3)
@@ -803,14 +882,6 @@
                             release.body
                         );
 
-                    /*
-                        If the release contains downloadable
-                        assets, the first asset becomes the
-                        direct download button.
-
-                        Otherwise, the button opens the
-                        GitHub release page.
-                    */
                     let downloadUrl =
                         release.html_url;
 
@@ -950,17 +1021,9 @@
             return "View the release notes on GitHub for details.";
         }
 
-        /*
-            Escape HTML from GitHub release notes
-            before displaying it on the page.
-        */
         const safeText =
             escapeHtml(body);
 
-        /*
-            Limit extremely long release notes so the
-            homepage does not become excessively large.
-        */
         const maximumLength = 700;
 
         let shortened =
