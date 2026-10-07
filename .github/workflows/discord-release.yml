@@ -4,23 +4,19 @@ on:
   release:
     types: [published]
 
+  workflow_dispatch:
+
 jobs:
   discord-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Post polished release announcement to Discord
+      - name: Post release announcement to Discord
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
           REPOSITORY: ${{ github.repository }}
 
         run: |
-          RELEASE_NAME=$(jq -r '.release.name // .release.tag_name' "$GITHUB_EVENT_PATH")
-          RELEASE_TAG=$(jq -r '.release.tag_name' "$GITHUB_EVENT_PATH")
-          RELEASE_URL=$(jq -r '.release.html_url' "$GITHUB_EVENT_PATH")
-          RELEASE_BODY=$(jq -r '.release.body // "No release notes provided."' "$GITHUB_EVENT_PATH" | head -c 3000)
-          PUBLISHED_AT=$(jq -r '.release.published_at' "$GITHUB_EVENT_PATH")
-
           AIRSIDE_ROLE_ID="1557040497019854869"
 
           DOWNLOAD_URL="https://github.com/${REPOSITORY}/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip"
@@ -28,7 +24,61 @@ jobs:
           SUPPORT_URL="https://discord.gg/j5czsStyBx"
           LOGO_URL="https://raw.githubusercontent.com/ZDubLee/zdublee.github.io/main/IconOnly_Transparent.png"
 
-          PUBLISHED_DATE=$(date -d "$PUBLISHED_AT" "+%B %d, %Y")
+          # -------------------------------------------------
+          # MANUAL TEST
+          # -------------------------------------------------
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+
+            RELEASE_NAME="Airside Companion Test Release"
+            RELEASE_TAG="TEST"
+            RELEASE_URL="https://github.com/${REPOSITORY}/releases/latest"
+
+            RELEASE_BODY="✅ Discord release notifications are working.
+
+          This is a manual test of the Airside Companion release notification system.
+
+          If you can see this message, the Discord webhook, embed, logo, links, and GitHub Action are working correctly.
+
+          The @Airside role is intentionally NOT pinged during manual tests."
+
+            PUBLISHED_DATE=$(date "+%B %d, %Y")
+
+            ANNOUNCEMENT="🧪 **TEST — Airside Companion release notification**"
+
+            # No Discord role mention during tests
+            ROLE_MENTION=""
+            ALLOWED_ROLES='[]'
+
+          # -------------------------------------------------
+          # REAL PUBLISHED RELEASE
+          # -------------------------------------------------
+
+          else
+
+            RELEASE_NAME=$(jq -r '.release.name // .release.tag_name' "$GITHUB_EVENT_PATH")
+            RELEASE_TAG=$(jq -r '.release.tag_name' "$GITHUB_EVENT_PATH")
+            RELEASE_URL=$(jq -r '.release.html_url' "$GITHUB_EVENT_PATH")
+            RELEASE_BODY=$(jq -r '.release.body // "No release notes provided."' "$GITHUB_EVENT_PATH" | head -c 3000)
+            PUBLISHED_AT=$(jq -r '.release.published_at' "$GITHUB_EVENT_PATH")
+
+            PUBLISHED_DATE=$(date -d "$PUBLISHED_AT" "+%B %d, %Y")
+
+            ANNOUNCEMENT="🚨 **A new version of ZDubLee's Airside Companion is now available!**"
+
+            # Ping @Airside on real releases only
+            ROLE_MENTION="<@&${AIRSIDE_ROLE_ID}> "
+
+            ALLOWED_ROLES=$(jq -n \
+              --arg role "$AIRSIDE_ROLE_ID" \
+              '[$role]'
+            )
+
+          fi
+
+          # -------------------------------------------------
+          # BUILD DISCORD MESSAGE
+          # -------------------------------------------------
 
           PAYLOAD=$(jq -n \
             --arg title "$RELEASE_NAME" \
@@ -40,23 +90,28 @@ jobs:
             --arg support_url "$SUPPORT_URL" \
             --arg logo_url "$LOGO_URL" \
             --arg published "$PUBLISHED_DATE" \
-            --arg role_id "$AIRSIDE_ROLE_ID" \
+            --arg announcement "$ANNOUNCEMENT" \
+            --arg role_mention "$ROLE_MENTION" \
+            --argjson allowed_roles "$ALLOWED_ROLES" \
             '{
               username: "Airside Companion",
+
               avatar_url: $logo_url,
 
               content: (
-                "<@&" + $role_id + "> 🚨 **A new version of ZDubLee'\''s Airside Companion is now available!**"
+                $role_mention +
+                $announcement
               ),
 
               allowed_mentions: {
                 parse: [],
-                roles: [$role_id]
+                roles: $allowed_roles
               },
 
               embeds: [
                 {
                   title: ("✈️ " + $title),
+
                   url: $release_url,
 
                   description: (
@@ -77,29 +132,50 @@ jobs:
                       value: ("`" + $tag + "`"),
                       inline: true
                     },
+
                     {
                       name: "📅 Released",
                       value: $published,
                       inline: true
                     },
+
                     {
                       name: "💻 Download",
-                      value: ("[**Download Airside Companion**](" + $download_url + ")"),
+                      value: (
+                        "[**Download Airside Companion**](" +
+                        $download_url +
+                        ")"
+                      ),
                       inline: false
                     },
+
                     {
                       name: "📋 Full Release Notes",
-                      value: ("[View this release on GitHub](" + $release_url + ")"),
+                      value: (
+                        "[View this release on GitHub](" +
+                        $release_url +
+                        ")"
+                      ),
                       inline: false
                     },
+
                     {
                       name: "🌐 Website",
-                      value: ("[Visit the Airside Companion website](" + $website_url + ")"),
+                      value: (
+                        "[Visit the Airside Companion website](" +
+                        $website_url +
+                        ")"
+                      ),
                       inline: false
                     },
+
                     {
                       name: "🛠️ Help, Ideas & Troubleshooting",
-                      value: ("[Join the Airside Companion Discord](" + $support_url + ")"),
+                      value: (
+                        "[Join the Airside Companion Discord](" +
+                        $support_url +
+                        ")"
+                      ),
                       inline: false
                     }
                   ],
@@ -110,7 +186,12 @@ jobs:
                   }
                 }
               ]
-            }')
+            }'
+          )
+
+          # -------------------------------------------------
+          # SEND TO DISCORD
+          # -------------------------------------------------
 
           curl \
             --fail-with-body \
