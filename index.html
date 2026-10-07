@@ -2,16 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="google-site-verification" content="0LrbdEzin5ZO05esG4fieLMdyRF_yNJyj-Z2mkfS2Ds" />
+    <meta
+        name="google-site-verification"
+        content="0LrbdEzin5ZO05esG4fieLMdyRF_yNJyj-Z2mkfS2Ds"
+    />
 
     <meta
         name="description"
-        content="Airside Companion Overlay is a real-time ATC companion application with OBS-ready overlays for flight simulation streaming."
+        content="ZDubLee's Airside Companion is a desktop companion application for flight simulation, virtual air traffic control, Twitch livestream integration, YouTube livestream integration, and OBS overlays."
     >
 
-    <title>Airside Companion Overlay</title>
+    <link
+        rel="icon"
+        type="image/png"
+        href="IconOnly_Transparent.png"
+    >
+
+    <title>ZDubLee's Airside Companion</title>
 
     <style>
         * {
@@ -27,13 +37,18 @@
             min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
             background:
-                radial-gradient(circle at top, #101d28 0%, #070b10 45%, #05080c 100%);
+                radial-gradient(
+                    circle at top,
+                    #101d28 0%,
+                    #070b10 45%,
+                    #05080c 100%
+                );
             color: #e8f0f7;
         }
 
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
             padding: 60px 30px 40px;
             text-align: center;
@@ -44,7 +59,10 @@
             max-width: 60%;
             height: auto;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 18px rgba(127, 216, 255, 0.18));
+            filter:
+                drop-shadow(
+                    0 0 18px rgba(127, 216, 255, 0.18)
+                );
         }
 
         .status {
@@ -84,8 +102,8 @@
         }
 
         .description {
-            max-width: 760px;
-            margin: 0 auto;
+            max-width: 780px;
+            margin: 0 auto 18px;
             color: #aebbc7;
             font-size: 17px;
             line-height: 1.8;
@@ -94,29 +112,37 @@
         .divider {
             width: 120px;
             height: 1px;
-            margin: 40px auto;
-            background: linear-gradient(
-                to right,
-                transparent,
-                #2c4659,
-                transparent
-            );
+            margin: 45px auto;
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    #2c4659,
+                    transparent
+                );
+        }
+
+        .section {
+            margin-top: 20px;
         }
 
         .section-title {
             margin-bottom: 8px;
-            font-size: 28px;
             color: #ffffff;
+            font-size: 28px;
         }
 
         .section-description {
+            max-width: 760px;
+            margin: 0 auto 30px;
             color: #7e8d99;
-            margin-bottom: 30px;
+            line-height: 1.7;
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
             gap: 18px;
             margin-top: 30px;
             text-align: left;
@@ -152,7 +178,30 @@
             line-height: 1.65;
         }
 
-        .coming-soon {
+        .youtube-section {
+            margin-top: 50px;
+            padding: 32px;
+            text-align: left;
+            background: rgba(13, 20, 28, 0.92);
+            border: 1px solid #263a49;
+            border-radius: 14px;
+        }
+
+        .youtube-section h2 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .youtube-section p {
+            color: #aebbc7;
+            line-height: 1.75;
+        }
+
+        .youtube-section strong {
+            color: #ffffff;
+        }
+
+        .notice {
             margin-top: 45px;
             padding: 25px;
             background: rgba(13, 20, 28, 0.7);
@@ -160,15 +209,22 @@
             border-radius: 12px;
         }
 
-        .coming-soon h2 {
+        .notice h2 {
             margin-top: 0;
             color: #ffffff;
             font-size: 24px;
         }
 
-        .coming-soon p {
+        .notice p {
             margin-bottom: 0;
             color: #8e9ba7;
+            line-height: 1.7;
+        }
+
+        .legal-notice {
+            margin-top: 25px;
+            color: #657482;
+            font-size: 13px;
             line-height: 1.7;
         }
 
@@ -190,15 +246,15 @@
         }
 
         .footer-links {
-            margin-top: 8px;
+            margin: 8px 0;
         }
 
-        .footer a {
+        a {
             color: #7fd8ff;
             text-decoration: none;
         }
 
-        .footer a:hover {
+        a:hover {
             text-decoration: underline;
         }
 
@@ -208,6 +264,7 @@
         }
 
         @media (max-width: 700px) {
+
             .container {
                 width: 94%;
                 padding: 40px 18px 30px;
@@ -233,8 +290,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 24px;
+            .youtube-section {
+                padding: 22px;
             }
         }
     </style>
@@ -242,131 +299,242 @@
 
 <body>
 
-    <main class="container">
+<main class="container">
 
-        <img
-            src="IconOnly_Transparent.png"
-            alt="Airside Companion Overlay Logo"
-            class="logo"
-        >
+    <img
+        src="IconOnly_Transparent.png"
+        alt="ZDubLee's Airside Companion Logo"
+        class="logo"
+    >
 
-        <br>
+    <br>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            Airside Companion
-        </div>
+    <div class="status">
+        <span class="status-dot"></span>
+        Airside Companion
+    </div>
 
-        <h1>Airside Companion Overlay</h1>
+    <h1>ZDubLee's Airside Companion</h1>
 
-        <div class="subtitle">
-            Real-Time ATC Information for Your Flight Simulation Stream
-        </div>
+    <div class="subtitle">
+        ATC Companion • YouTube Integration • OBS Overlays
+    </div>
 
-        <p class="description">
-            Airside Companion Overlay is a companion application designed for
-            Airside ATC and Microsoft Flight Simulator. It provides clean,
-            stream-ready airport information through browser-based overlays
-            that can be added directly to OBS.
+    <p class="description">
+        ZDubLee's Airside Companion is a desktop companion
+        application for flight simulation, virtual air traffic
+        control, livestreaming, and content creation.
+    </p>
+
+    <p class="description">
+        The application works alongside Airside ATC and
+        Microsoft Flight Simulator to provide useful airport,
+        simulator, traffic, weather, ATC, and streaming
+        information through a companion interface and
+        OBS-compatible browser overlays.
+    </p>
+
+    <div class="divider"></div>
+
+    <section class="section">
+
+        <h2 class="section-title">
+            Built for Virtual Air Traffic Control
+        </h2>
+
+        <p class="section-description">
+            Airside Companion brings simulator, airport,
+            controller, and livestream information together
+            in one stream-friendly application.
         </p>
 
-        <div class="divider"></div>
+        <div class="features">
 
-        <section>
-
-            <h2 class="section-title">Built for the Virtual Controller</h2>
-
-            <p class="section-description">
-                Important ATC and simulator information presented in a clean,
-                stream-friendly format.
-            </p>
-
-            <div class="features">
-
-                <div class="feature">
-                    <h3>Airport Information</h3>
-                    <p>
-                        Display airport information, active runways, frequencies,
-                        session details, and other useful controller information.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <h3>OBS Browser Overlays</h3>
-                    <p>
-                        Purpose-built browser source overlays designed to fit
-                        naturally into ATC and flight simulation livestreams.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <h3>Live Data</h3>
-                    <p>
-                        Automatically update information as your simulator and
-                        Airside session change.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <h3>Weather &amp; ATIS</h3>
-                    <p>
-                        Designed to support useful airport weather and ATIS
-                        information directly inside the companion experience.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <h3>Tower Radar</h3>
-                    <p>
-                        Radar-style traffic displays designed to give controllers
-                        an improved view of aircraft operating around the airport.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <h3>Ground Radar</h3>
-                    <p>
-                        Ground traffic visualization designed to help monitor
-                        aircraft movement across airport surfaces.
-                    </p>
-                </div>
-
+            <div class="feature">
+                <h3>Airport Information</h3>
+                <p>
+                    View airport information, active runways,
+                    frequencies, session information, and
+                    other useful virtual ATC data.
+                </p>
             </div>
 
-        </section>
-
-        <section class="coming-soon">
-            <h2>Development in Progress</h2>
-
-            <p>
-                Airside Companion Overlay is actively being developed.
-                Features, integrations, overlay options, and controller tools
-                will continue to expand as the application evolves.
-            </p>
-        </section>
-
-        <footer class="footer">
-
-            <div class="footer-main">
-                <span class="footer-dot">●</span>
-                Built for Airside ATC • Microsoft Flight Simulator • OBS
+            <div class="feature">
+                <h3>OBS Browser Overlays</h3>
+                <p>
+                    Display selected information through
+                    browser-source overlays designed for OBS
+                    and flight simulation livestreams.
+                </p>
             </div>
 
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-
-                <span class="separator">•</span>
-
-                <a href="terms.html">Terms of Service</a>
+            <div class="feature">
+                <h3>Live Simulator Data</h3>
+                <p>
+                    Update supported airport, aircraft,
+                    traffic, and session information as the
+                    simulator environment changes.
+                </p>
             </div>
 
-            <div>
-                © 2026 Airside Companion Overlay
+            <div class="feature">
+                <h3>Weather &amp; ATIS</h3>
+                <p>
+                    Display supported airport weather and
+                    ATIS information for the active virtual
+                    ATC session.
+                </p>
             </div>
 
-        </footer>
+            <div class="feature">
+                <h3>Tower Radar</h3>
+                <p>
+                    Radar-style traffic displays provide
+                    additional situational awareness for
+                    virtual controllers.
+                </p>
+            </div>
 
-    </main>
+            <div class="feature">
+                <h3>Ground Radar</h3>
+                <p>
+                    View supported aircraft movement on and
+                    around airport surfaces in a dedicated
+                    ground display.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="youtube-section">
+
+        <h2>Google &amp; YouTube Integration</h2>
+
+        <p>
+            Users may optionally connect their Google and
+            YouTube accounts to ZDubLee's Airside Companion.
+            Connecting a Google account is not required for
+            the application's core flight simulation and
+            virtual ATC features.
+        </p>
+
+        <p>
+            When a user chooses to connect YouTube,
+            <strong>
+                ZDubLee's Airside Companion uses Google OAuth
+                and YouTube API Services
+            </strong>
+            to identify the authorized YouTube channel and
+            provide supported livestream features.
+        </p>
+
+        <p>
+            Depending on the features enabled and permissions
+            granted by the user, these features may include
+            displaying YouTube livestream information, live
+            chat, channel information, subscriber or channel
+            statistics made available by YouTube, Super Chats,
+            Super Stickers, channel memberships, and related
+            livestream activity.
+        </p>
+
+        <p>
+            This information is used to provide livestream
+            tools within Airside Companion and, when the user
+            chooses, to display selected information through
+            OBS overlays during their livestream.
+        </p>
+
+        <p>
+            Airside Companion only requests Google and
+            YouTube permissions needed for the features
+            enabled by the user. Users can disconnect their
+            account and revoke access at any time.
+        </p>
+
+        <p>
+            For complete information about how Google and
+            YouTube data is handled, please review our
+            <a href="privacy.html">Privacy Policy</a>.
+        </p>
+
+    </section>
+
+    <section class="notice">
+
+        <h2>For Simulation Use Only</h2>
+
+        <p>
+            ZDubLee's Airside Companion is designed exclusively
+            for flight simulation, virtual air traffic control,
+            livestreaming, and entertainment. It is not intended
+            or approved for real-world aircraft navigation,
+            dispatch, weather decisions, or air traffic control.
+        </p>
+
+    </section>
+
+    <section class="notice">
+
+        <h2>Development in Progress</h2>
+
+        <p>
+            ZDubLee's Airside Companion is actively being
+            developed. Features, integrations, overlay options,
+            and controller tools may change as development
+            continues.
+        </p>
+
+    </section>
+
+    <p class="legal-notice">
+        ZDubLee's Airside Companion is an independent companion
+        application and is not sponsored, endorsed, or operated
+        by Google, YouTube, Microsoft, OBS Project, or Airside
+        unless expressly stated otherwise. All third-party
+        trademarks belong to their respective owners.
+    </p>
+
+    <footer class="footer">
+
+        <div class="footer-main">
+            <span class="footer-dot">●</span>
+            ZDubLee's Airside Companion
+        </div>
+
+        <div class="footer-links">
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <span class="separator">•</span>
+
+            <a href="terms.html">
+                Terms of Service
+            </a>
+
+            <span class="separator">•</span>
+
+            <a
+                href="https://www.youtube.com/t/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                YouTube Terms
+            </a>
+
+        </div>
+
+        <div>
+            © 2026 ZDubLee's Airside Companion
+        </div>
+
+    </footer>
+
+</main>
 
 </body>
 </html>
