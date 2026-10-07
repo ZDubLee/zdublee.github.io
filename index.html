@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="ZDubLee's Airside Companion is a desktop companion application for flight simulation, virtual air traffic control, Twitch livestream integration, YouTube livestream integration, and OBS overlays."
+        content="ZDubLee's Airside Companion is a desktop companion application for flight simulation, virtual air traffic control, YouTube livestream integration, and OBS overlays."
     >
 
     <link
@@ -139,6 +139,117 @@
             line-height: 1.7;
         }
 
+        /* RELEASES */
+
+        .releases-section {
+            margin-top: 45px;
+        }
+
+        .releases-container {
+            max-width: 850px;
+            margin: 30px auto 0;
+        }
+
+        .release-card {
+            background: rgba(13, 20, 28, 0.92);
+            border: 1px solid #1d2b38;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .release-card.latest {
+            border-color: #31536b;
+            box-shadow:
+                0 0 25px rgba(127, 216, 255, 0.05);
+        }
+
+        .release-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .release-title {
+            margin: 0;
+            color: #7fd8ff;
+            font-size: 21px;
+        }
+
+        .latest-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #35d07f;
+            border-radius: 15px;
+            color: #35d07f;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .release-date {
+            margin-top: 8px;
+            color: #677786;
+            font-size: 13px;
+        }
+
+        .release-description {
+            margin-top: 16px;
+            color: #aebbc7;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        .release-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .release-button {
+            display: inline-block;
+            padding: 10px 17px;
+            border: 1px solid #31536b;
+            border-radius: 7px;
+            background: #162532;
+            color: #7fd8ff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .release-button:hover {
+            background: #1d3344;
+            border-color: #4c7693;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .release-button.primary {
+            background: #123021;
+            border-color: #35d07f;
+            color: #70e5a2;
+        }
+
+        .release-button.primary:hover {
+            background: #19402d;
+        }
+
+        .release-loading {
+            color: #7e8d99;
+            padding: 25px;
+        }
+
+        /* FEATURE CARDS */
+
         .features {
             display: grid;
             grid-template-columns:
@@ -177,6 +288,8 @@
             font-size: 14px;
             line-height: 1.65;
         }
+
+        /* YOUTUBE SECTION */
 
         .youtube-section {
             margin-top: 50px;
@@ -293,6 +406,19 @@
             .youtube-section {
                 padding: 22px;
             }
+
+            .release-card {
+                padding: 20px;
+            }
+
+            .release-actions {
+                flex-direction: column;
+            }
+
+            .release-button {
+                text-align: center;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -334,7 +460,33 @@
         OBS-compatible browser overlays.
     </p>
 
+    <!-- RELEASES -->
+
+    <section class="releases-section">
+
+        <h2 class="section-title">
+            Latest Releases
+        </h2>
+
+        <p class="section-description">
+            Download the latest versions of
+            ZDubLee's Airside Companion.
+        </p>
+
+        <div
+            id="releases"
+            class="releases-container"
+        >
+            <div class="release-loading">
+                Loading releases...
+            </div>
+        </div>
+
+    </section>
+
     <div class="divider"></div>
+
+    <!-- FEATURES -->
 
     <section class="section">
 
@@ -352,6 +504,7 @@
 
             <div class="feature">
                 <h3>Airport Information</h3>
+
                 <p>
                     View airport information, active runways,
                     frequencies, session information, and
@@ -361,6 +514,7 @@
 
             <div class="feature">
                 <h3>OBS Browser Overlays</h3>
+
                 <p>
                     Display selected information through
                     browser-source overlays designed for OBS
@@ -370,6 +524,7 @@
 
             <div class="feature">
                 <h3>Live Simulator Data</h3>
+
                 <p>
                     Update supported airport, aircraft,
                     traffic, and session information as the
@@ -379,6 +534,7 @@
 
             <div class="feature">
                 <h3>Weather &amp; ATIS</h3>
+
                 <p>
                     Display supported airport weather and
                     ATIS information for the active virtual
@@ -388,6 +544,7 @@
 
             <div class="feature">
                 <h3>Tower Radar</h3>
+
                 <p>
                     Radar-style traffic displays provide
                     additional situational awareness for
@@ -397,6 +554,7 @@
 
             <div class="feature">
                 <h3>Ground Radar</h3>
+
                 <p>
                     View supported aircraft movement on and
                     around airport surfaces in a dedicated
@@ -408,9 +566,13 @@
 
     </section>
 
+    <!-- YOUTUBE -->
+
     <section class="youtube-section">
 
-        <h2>Google &amp; YouTube Integration</h2>
+        <h2>
+            Google &amp; YouTube Integration
+        </h2>
 
         <p>
             Users may optionally connect their Google and
@@ -457,14 +619,20 @@
         <p>
             For complete information about how Google and
             YouTube data is handled, please review our
-            <a href="privacy.html">Privacy Policy</a>.
+            <a href="privacy.html">
+                Privacy Policy
+            </a>.
         </p>
 
     </section>
 
+    <!-- SIMULATION DISCLAIMER -->
+
     <section class="notice">
 
-        <h2>For Simulation Use Only</h2>
+        <h2>
+            For Simulation Use Only
+        </h2>
 
         <p>
             ZDubLee's Airside Companion is designed exclusively
@@ -476,9 +644,13 @@
 
     </section>
 
+    <!-- DEVELOPMENT -->
+
     <section class="notice">
 
-        <h2>Development in Progress</h2>
+        <h2>
+            Development in Progress
+        </h2>
 
         <p>
             ZDubLee's Airside Companion is actively being
@@ -496,6 +668,8 @@
         unless expressly stated otherwise. All third-party
         trademarks belong to their respective owners.
     </p>
+
+    <!-- FOOTER -->
 
     <footer class="footer">
 
@@ -535,6 +709,276 @@
     </footer>
 
 </main>
+
+<!-- GITHUB RELEASES -->
+
+<script>
+    const githubOwner = "ZDubLee";
+
+    /*
+        If Airside Companion releases are published in a
+        different repository, change only this line.
+    */
+    const githubRepo = "zdublee.github.io";
+
+    const releasesContainer =
+        document.getElementById("releases");
+
+    async function loadReleases() {
+
+        try {
+
+            const response = await fetch(
+                `https://api.github.com/repos/${githubOwner}/${githubRepo}/releases`
+            );
+
+            if (!response.ok) {
+                throw new Error(
+                    "Unable to retrieve GitHub releases."
+                );
+            }
+
+            const releases = await response.json();
+
+            if (!Array.isArray(releases) || releases.length === 0) {
+
+                releasesContainer.innerHTML = `
+                    <div class="release-card">
+                        <h3 class="release-title">
+                            No releases available yet
+                        </h3>
+
+                        <div class="release-description">
+                            The first public release of
+                            ZDubLee's Airside Companion
+                            will appear here when available.
+                        </div>
+                    </div>
+                `;
+
+                return;
+            }
+
+            releasesContainer.innerHTML = "";
+
+            /*
+                Display the three newest releases.
+            */
+            releases
+                .filter(release => !release.draft)
+                .slice(0, 3)
+                .forEach((release, index) => {
+
+                    const card =
+                        document.createElement("div");
+
+                    card.className =
+                        index === 0
+                            ? "release-card latest"
+                            : "release-card";
+
+                    const releaseDate =
+                        release.published_at
+                            ? new Date(
+                                release.published_at
+                              ).toLocaleDateString(
+                                undefined,
+                                {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric"
+                                }
+                              )
+                            : "Release date unavailable";
+
+                    const releaseName =
+                        escapeHtml(
+                            release.name ||
+                            release.tag_name ||
+                            "Airside Companion Release"
+                        );
+
+                    const description =
+                        formatReleaseBody(
+                            release.body
+                        );
+
+                    /*
+                        If the release contains downloadable
+                        assets, the first asset becomes the
+                        direct download button.
+
+                        Otherwise, the button opens the
+                        GitHub release page.
+                    */
+                    let downloadUrl =
+                        release.html_url;
+
+                    let downloadText =
+                        index === 0
+                            ? "View Latest Release"
+                            : "View Release";
+
+                    if (
+                        release.assets &&
+                        release.assets.length > 0
+                    ) {
+
+                        downloadUrl =
+                            release.assets[0]
+                                .browser_download_url;
+
+                        downloadText =
+                            index === 0
+                                ? "Download Latest Release"
+                                : "Download";
+                    }
+
+                    card.innerHTML = `
+
+                        <div class="release-top">
+
+                            <h3 class="release-title">
+                                ${releaseName}
+                            </h3>
+
+                            ${
+                                index === 0
+                                    ? `
+                                        <span class="latest-badge">
+                                            Latest
+                                        </span>
+                                      `
+                                    : ""
+                            }
+
+                        </div>
+
+                        <div class="release-date">
+                            Released ${releaseDate}
+                        </div>
+
+                        <div class="release-description">
+                            ${description}
+                        </div>
+
+                        <div class="release-actions">
+
+                            <a
+                                href="${downloadUrl}"
+                                class="release-button ${
+                                    index === 0
+                                        ? "primary"
+                                        : ""
+                                }"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                ${downloadText}
+                            </a>
+
+                            <a
+                                href="${release.html_url}"
+                                class="release-button"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Release Notes
+                            </a>
+
+                        </div>
+                    `;
+
+                    releasesContainer
+                        .appendChild(card);
+
+                });
+
+        } catch (error) {
+
+            console.error(
+                "GitHub release loading error:",
+                error
+            );
+
+            releasesContainer.innerHTML = `
+                <div class="release-card">
+
+                    <h3 class="release-title">
+                        Releases Temporarily Unavailable
+                    </h3>
+
+                    <div class="release-description">
+                        GitHub release information could not
+                        be loaded right now. Please visit the
+                        GitHub repository for the latest
+                        version.
+                    </div>
+
+                    <div class="release-actions">
+
+                        <a
+                            href="https://github.com/${githubOwner}/${githubRepo}/releases"
+                            class="release-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Releases on GitHub
+                        </a>
+
+                    </div>
+
+                </div>
+            `;
+        }
+    }
+
+    function escapeHtml(text) {
+
+        const element =
+            document.createElement("div");
+
+        element.textContent =
+            text || "";
+
+        return element.innerHTML;
+    }
+
+    function formatReleaseBody(body) {
+
+        if (!body) {
+            return "View the release notes on GitHub for details.";
+        }
+
+        /*
+            Escape HTML from GitHub release notes
+            before displaying it on the page.
+        */
+        const safeText =
+            escapeHtml(body);
+
+        /*
+            Limit extremely long release notes so the
+            homepage does not become excessively large.
+        */
+        const maximumLength = 700;
+
+        let shortened =
+            safeText.length > maximumLength
+                ? safeText.substring(
+                    0,
+                    maximumLength
+                  ) + "..."
+                : safeText;
+
+        return shortened.replace(
+            /\n/g,
+            "<br>"
+        );
+    }
+
+    loadReleases();
+</script>
 
 </body>
 </html>
