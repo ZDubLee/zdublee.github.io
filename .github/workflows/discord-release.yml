@@ -21,6 +21,8 @@ jobs:
           RELEASE_BODY=$(jq -r '.release.body // "No release notes provided."' "$GITHUB_EVENT_PATH" | head -c 3000)
           PUBLISHED_AT=$(jq -r '.release.published_at' "$GITHUB_EVENT_PATH")
 
+          AIRSIDE_ROLE_ID="1557040497019854869"
+
           DOWNLOAD_URL="https://github.com/${REPOSITORY}/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip"
           WEBSITE_URL="https://zdublee.github.io/"
           SUPPORT_URL="https://discord.gg/j5czsStyBx"
@@ -38,11 +40,19 @@ jobs:
             --arg support_url "$SUPPORT_URL" \
             --arg logo_url "$LOGO_URL" \
             --arg published "$PUBLISHED_DATE" \
+            --arg role_id "$AIRSIDE_ROLE_ID" \
             '{
               username: "Airside Companion",
               avatar_url: $logo_url,
 
-              content: "🚨 **A new version of ZDubLee'\''s Airside Companion is now available!**",
+              content: (
+                "<@&" + $role_id + "> 🚨 **A new version of ZDubLee'\''s Airside Companion is now available!**"
+              ),
+
+              allowed_mentions: {
+                parse: [],
+                roles: [$role_id]
+              },
 
               embeds: [
                 {
