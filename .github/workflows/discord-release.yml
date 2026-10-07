@@ -5,6 +5,15 @@ on:
     types: [published]
 
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "What do you want to send?"
+        required: true
+        default: "test"
+        type: choice
+        options:
+          - test
+          - post-latest-release
 
 jobs:
   discord-release:
@@ -15,20 +24,23 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
           REPOSITORY: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         run: |
           AIRSIDE_ROLE_ID="1557040497019854869"
 
-          DOWNLOAD_URL="https://github.com/${REPOSITORY}/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip"
           WEBSITE_URL="https://zdublee.github.io/"
           SUPPORT_URL="https://discord.gg/j5czsStyBx"
           LOGO_URL="https://raw.githubusercontent.com/ZDubLee/zdublee.github.io/main/IconOnly_Transparent.png"
 
-          # -------------------------------------------------
-          # MANUAL TEST
-          # -------------------------------------------------
+          DOWNLOAD_URL="https://github.com/${REPOSITORY}/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip"
 
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          # =================================================
+          # MANUAL TEST
+          # =================================================
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && \
+             [ "${{ inputs.mode }}" = "test" ]; then
 
             RELEASE_NAME="Airside Companion Test Release"
             RELEASE_TAG="TEST"
@@ -38,21 +50,52 @@ jobs:
 
           This is a manual test of the Airside Companion release notification system.
 
-          If you can see this message, the Discord webhook, embed, logo, links, and GitHub Action are working correctly.
-
           The @Airside role is intentionally NOT pinged during manual tests."
 
             PUBLISHED_DATE=$(date "+%B %d, %Y")
 
             ANNOUNCEMENT="🧪 **TEST — Airside Companion release notification**"
 
-            # No Discord role mention during tests
             ROLE_MENTION=""
             ALLOWED_ROLES='[]'
 
-          # -------------------------------------------------
-          # REAL PUBLISHED RELEASE
-          # -------------------------------------------------
+          # =================================================
+          # MANUALLY POST ACTUAL LATEST RELEASE
+          # =================================================
+
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && \
+               [ "${{ inputs.mode }}" = "post-latest-release" ]; then
+
+            RELEASE_JSON=$(curl \
+              --fail \
+              --silent \
+              --show-error \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${REPOSITORY}/releases/latest"
+            )
+
+            RELEASE_NAME=$(echo "$RELEASE_JSON" | jq -r '.name // .tag_name')
+            RELEASE_TAG=$(echo "$RELEASE_JSON" | jq -r '.tag_name')
+            RELEASE_URL=$(echo "$RELEASE_JSON" | jq -r '.html_url')
+            RELEASE_BODY=$(echo "$RELEASE_JSON" | jq -r '.body // "No release notes provided."' | head -c 3000)
+            PUBLISHED_AT=$(echo "$RELEASE_JSON" | jq -r '.published_at')
+
+            PUBLISHED_DATE=$(date -d "$PUBLISHED_AT" "+%B %d, %Y")
+
+            ANNOUNCEMENT="🚨 **A new version of ZDubLee's Airside Companion is now available!**"
+
+            ROLE_MENTION="<@&${AIRSIDE_ROLE_ID}> "
+
+            ALLOWED_ROLES=$(jq -n \
+              --arg role "$AIRSIDE_ROLE_ID" \
+              '[$role]'
+            )
+
+          # =================================================
+          # NORMAL NEW RELEASE EVENT
+          # =================================================
 
           else
 
@@ -66,7 +109,6 @@ jobs:
 
             ANNOUNCEMENT="🚨 **A new version of ZDubLee's Airside Companion is now available!**"
 
-            # Ping @Airside on real releases only
             ROLE_MENTION="<@&${AIRSIDE_ROLE_ID}> "
 
             ALLOWED_ROLES=$(jq -n \
@@ -76,9 +118,9 @@ jobs:
 
           fi
 
-          # -------------------------------------------------
-          # BUILD DISCORD MESSAGE
-          # -------------------------------------------------
+          # =================================================
+          # BUILD DISCORD PAYLOAD
+          # =================================================
 
           PAYLOAD=$(jq -n \
             --arg title "$RELEASE_NAME" \
@@ -189,9 +231,9 @@ jobs:
             }'
           )
 
-          # -------------------------------------------------
+          # =================================================
           # SEND TO DISCORD
-          # -------------------------------------------------
+          # =================================================
 
           curl \
             --fail-with-body \
