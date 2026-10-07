@@ -1,0 +1,109 @@
+name: Post Release to Discord
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  discord-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Post polished release announcement to Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          REPOSITORY: ${{ github.repository }}
+
+        run: |
+          RELEASE_NAME=$(jq -r '.release.name // .release.tag_name' "$GITHUB_EVENT_PATH")
+          RELEASE_TAG=$(jq -r '.release.tag_name' "$GITHUB_EVENT_PATH")
+          RELEASE_URL=$(jq -r '.release.html_url' "$GITHUB_EVENT_PATH")
+          RELEASE_BODY=$(jq -r '.release.body // "No release notes provided."' "$GITHUB_EVENT_PATH" | head -c 3000)
+          PUBLISHED_AT=$(jq -r '.release.published_at' "$GITHUB_EVENT_PATH")
+
+          DOWNLOAD_URL="https://github.com/${REPOSITORY}/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip"
+          WEBSITE_URL="https://zdublee.github.io/"
+          SUPPORT_URL="https://discord.gg/j5czsStyBx"
+          LOGO_URL="https://raw.githubusercontent.com/ZDubLee/zdublee.github.io/main/IconOnly_Transparent.png"
+
+          PUBLISHED_DATE=$(date -d "$PUBLISHED_AT" "+%B %d, %Y")
+
+          PAYLOAD=$(jq -n \
+            --arg title "$RELEASE_NAME" \
+            --arg tag "$RELEASE_TAG" \
+            --arg description "$RELEASE_BODY" \
+            --arg release_url "$RELEASE_URL" \
+            --arg download_url "$DOWNLOAD_URL" \
+            --arg website_url "$WEBSITE_URL" \
+            --arg support_url "$SUPPORT_URL" \
+            --arg logo_url "$LOGO_URL" \
+            --arg published "$PUBLISHED_DATE" \
+            '{
+              username: "Airside Companion",
+              avatar_url: $logo_url,
+
+              content: "🚨 **A new version of ZDubLee'\''s Airside Companion is now available!**",
+
+              embeds: [
+                {
+                  title: ("✈️ " + $title),
+                  url: $release_url,
+
+                  description: (
+                    "**ZDubLee'\''s Airside Companion has been updated.**\n\n" +
+                    "### What'\''s New\n" +
+                    $description
+                  ),
+
+                  color: 3395711,
+
+                  thumbnail: {
+                    url: $logo_url
+                  },
+
+                  fields: [
+                    {
+                      name: "📦 Version",
+                      value: ("`" + $tag + "`"),
+                      inline: true
+                    },
+                    {
+                      name: "📅 Released",
+                      value: $published,
+                      inline: true
+                    },
+                    {
+                      name: "💻 Download",
+                      value: ("[**Download Airside Companion**](" + $download_url + ")"),
+                      inline: false
+                    },
+                    {
+                      name: "📋 Full Release Notes",
+                      value: ("[View this release on GitHub](" + $release_url + ")"),
+                      inline: false
+                    },
+                    {
+                      name: "🌐 Website",
+                      value: ("[Visit the Airside Companion website](" + $website_url + ")"),
+                      inline: false
+                    },
+                    {
+                      name: "🛠️ Help, Ideas & Troubleshooting",
+                      value: ("[Join the Airside Companion Discord](" + $support_url + ")"),
+                      inline: false
+                    }
+                  ],
+
+                  footer: {
+                    text: "ZDubLee'\''s Airside Companion • Built for virtual ATC and streaming",
+                    icon_url: $logo_url
+                  }
+                }
+              ]
+            }')
+
+          curl \
+            --fail-with-body \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "$DISCORD_WEBHOOK_URL"
