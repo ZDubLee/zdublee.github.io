@@ -1,1381 +1,1383 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="google-site-verification"
-        content="0LrbdEzin5ZO05esG4fieLMdyRF_yNJyj-Z2mkfS2Ds"
-    >
+<meta
+    name="google-site-verification"
+    content="0LrbdEzin5ZO05esG4fieLMdyRF_yNJyj-Z2mkfS2Ds"
+>
 
-    <meta
-        name="description"
-        content="ZDubLee's Airside Companion is a desktop companion application for flight simulation, virtual air traffic control, YouTube and Twitch livestream integration, and OBS overlays."
-    >
+<meta
+    name="description"
+    content="ZDubLee's Airside Companion is a desktop companion application for flight simulation, virtual air traffic control, YouTube and Twitch livestream integration, and OBS overlays."
+>
 
-    <link
-        rel="icon"
-        type="image/png"
-        href="IconOnly_Transparent.png"
-    >
+<link
+    rel="icon"
+    type="image/png"
+    href="IconOnly_Transparent.png"
+>
 
-    <title>ZDubLee's Airside Companion</title>
+<title>ZDubLee's Airside Companion</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
+    body {
+        margin: 0;
+        min-height: 100vh;
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
 
-            background:
-                radial-gradient(
-                    circle at top,
-                    #101d28 0%,
-                    #070b10 45%,
-                    #05080c 100%
-                );
+        background:
+            radial-gradient(
+                circle at top,
+                #101d28 0%,
+                #070b10 45%,
+                #05080c 100%
+            );
 
-            color: #e8f0f7;
-        }
+        color: #e8f0f7;
+    }
 
-        a {
-            color: #7fd8ff;
-            text-decoration: none;
-        }
+    a {
+        color: #7fd8ff;
+        text-decoration: none;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1050px;
+
+        margin: 0 auto;
+
+        padding:
+            60px
+            30px
+            40px;
+
+        text-align: center;
+    }
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .logo {
+        width: 190px;
+        max-width: 60%;
+
+        height: auto;
+
+        margin-bottom: 25px;
+
+        filter:
+            drop-shadow(
+                0 0 18px
+                rgba(127, 216, 255, 0.18)
+            );
+    }
+
+    .status {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding:
+            7px
+            15px;
+
+        margin-bottom: 22px;
+
+        border:
+            1px solid
+            #35d07f;
+
+        border-radius: 20px;
+
+        color: #35d07f;
+
+        background:
+            rgba(
+                53,
+                208,
+                127,
+                0.05
+            );
+
+        font-size: 13px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.2px;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+
+        background: #35d07f;
+
+        border-radius: 50%;
+
+        box-shadow:
+            0 0 10px
+            #35d07f;
+    }
+
+    h1 {
+        margin:
+            0
+            0
+            12px;
+
+        color: #ffffff;
+
+        font-size: 50px;
+
+        line-height: 1.1;
+    }
+
+    .subtitle {
+        margin-bottom: 28px;
+
+        color: #7fd8ff;
+
+        font-size: 21px;
+    }
+
+    .description {
+        max-width: 780px;
+
+        margin:
+            0
+            auto
+            18px;
+
+        color: #aebbc7;
+
+        font-size: 17px;
+
+        line-height: 1.8;
+    }
+
+    /* =====================================================
+       MAIN APP PREVIEW
+       ===================================================== */
+
+    .main-preview {
+        max-width: 1050px;
+
+        margin:
+            38px
+            auto
+            15px;
+    }
+
+    .main-preview-frame {
+        overflow: hidden;
+
+        background:
+            rgba(
+                13,
+                20,
+                28,
+                0.9
+            );
+
+        border:
+            1px solid
+            #31536b;
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 18px 55px
+            rgba(
+                0,
+                0,
+                0,
+                0.45
+            ),
+            0 0 35px
+            rgba(
+                76,
+                232,
+                218,
+                0.08
+            );
+    }
+
+    .main-preview-frame img {
+        display: block;
+
+        width: 100%;
+
+        height: auto;
+    }
+
+    .main-preview-caption {
+        margin-top: 13px;
+
+        color: #677786;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+    /* =====================================================
+       GENERAL SECTIONS
+       ===================================================== */
+
+    .section {
+        margin-top: 20px;
+    }
+
+    .section-title {
+        margin-bottom: 8px;
+
+        color: #ffffff;
+
+        font-size: 28px;
+    }
+
+    .section-description {
+        max-width: 760px;
+
+        margin:
+            0
+            auto
+            30px;
+
+        color: #7e8d99;
+
+        line-height: 1.7;
+    }
+
+    .divider {
+        width: 120px;
+        height: 1px;
+
+        margin:
+            45px
+            auto;
+
+        background:
+            linear-gradient(
+                to right,
+                transparent,
+                #2c4659,
+                transparent
+            );
+    }
+
+    /* =====================================================
+       LATEST RELEASE
+       ===================================================== */
+
+    .releases-section {
+        margin-top: 45px;
+    }
+
+    .releases-container {
+        max-width: 850px;
+
+        margin:
+            30px
+            auto
+            0;
+    }
+
+    .release-card {
+        padding: 26px;
+
+        text-align: left;
+
+        background:
+            rgba(
+                13,
+                20,
+                28,
+                0.92
+            );
+
+        border:
+            1px solid
+            #31536b;
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 0 25px
+            rgba(
+                127,
+                216,
+                255,
+                0.05
+            );
+    }
+
+    .release-top {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+    }
+
+    .release-title {
+        margin: 0;
+
+        color: #7fd8ff;
+
+        font-size: 22px;
+    }
+
+    .latest-badge {
+        display: inline-block;
+
+        padding:
+            5px
+            11px;
+
+        border:
+            1px solid
+            #35d07f;
+
+        border-radius: 15px;
+
+        color: #35d07f;
+
+        font-size: 11px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+    }
+
+    .release-date {
+        margin-top: 8px;
+
+        color: #677786;
+
+        font-size: 13px;
+    }
+
+    .release-description {
+        margin-top: 17px;
+
+        color: #aebbc7;
+
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+    .release-actions {
+        display: flex;
+
+        gap: 10px;
+
+        margin-top: 22px;
+
+        flex-wrap: wrap;
+    }
+
+    .release-button {
+        display: inline-block;
+
+        padding:
+            11px
+            18px;
+
+        border:
+            1px solid
+            #31536b;
+
+        border-radius: 7px;
+
+        background: #162532;
+
+        color: #7fd8ff;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        text-decoration: none;
+
+        transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .release-button:hover {
+        background: #1d3344;
+
+        border-color: #4c7693;
+
+        text-decoration: none;
+
+        transform:
+            translateY(-1px);
+    }
+
+    .release-button.primary {
+        background: #123021;
+
+        border-color: #35d07f;
+
+        color: #70e5a2;
+    }
+
+    .release-button.primary:hover {
+        background: #19402d;
+    }
+
+    .release-loading {
+        padding: 25px;
+
+        color: #7e8d99;
+    }
+
+    /* =====================================================
+       DISCORD
+       ===================================================== */
+
+    .discord-section {
+        margin-top: 45px;
+
+        padding: 30px;
+
+        background:
+            rgba(
+                13,
+                20,
+                28,
+                0.9
+            );
+
+        border:
+            1px solid
+            #1d2b38;
+
+        border-radius: 12px;
+    }
+
+    .discord-section h2 {
+        margin-top: 0;
+
+        color: #ffffff;
+
+        font-size: 26px;
+    }
+
+    .discord-section p {
+        max-width: 720px;
+
+        margin:
+            0
+            auto
+            22px;
+
+        color: #aebbc7;
+
+        line-height: 1.7;
+    }
+
+    .discord-button {
+        display: inline-block;
+
+        padding:
+            11px
+            19px;
+
+        background: #162532;
+
+        border:
+            1px solid
+            #31536b;
+
+        border-radius: 7px;
+
+        color: #7fd8ff;
+
+        font-weight: bold;
+
+        text-decoration: none;
+
+        transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .discord-button:hover {
+        background: #1d3344;
+
+        border-color: #4c7693;
+
+        text-decoration: none;
+
+        transform:
+            translateY(-1px);
+    }
+
+    /* =====================================================
+       FEATURES
+       ===================================================== */
+
+    .features {
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+        gap: 18px;
+
+        margin-top: 30px;
+
+        text-align: left;
+    }
+
+    .feature {
+        padding: 24px;
+
+        background:
+            rgba(
+                13,
+                20,
+                28,
+                0.9
+            );
+
+        border:
+            1px solid
+            #1d2b38;
+
+        border-radius: 12px;
+
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .feature:hover {
+        transform:
+            translateY(-3px);
+
+        border-color: #31536b;
+
+        background: #101923;
+    }
+
+    .feature h3 {
+        margin:
+            0
+            0
+            10px;
+
+        color: #7fd8ff;
+
+        font-size: 18px;
+    }
+
+    .feature p {
+        margin: 0;
+
+        color: #8e9ba7;
+
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+    /* =====================================================
+       STREAMING INTEGRATIONS
+       ===================================================== */
+
+    .integration-section {
+        margin-top: 50px;
+
+        padding: 32px;
+
+        text-align: left;
+
+        background:
+            rgba(
+                13,
+                20,
+                28,
+                0.92
+            );
+
+        border:
+            1px solid
+            #263a49;
+
+        border-radius: 14px;
+    }
+
+    .integration-section h2 {
+        margin-top: 0;
+
+        color: #ffffff;
+    }
+
+    .integration-section h3 {
+        margin-top: 30px;
+
+        color: #7fd8ff;
+    }
+
+    .integration-section p {
+        color: #aebbc7;
+
+        line-height: 1.75;
+    }
+
+    .integration-section strong {
+        color: #ffffff;
+    }
+
+    /* =====================================================
+       NOTICES
+       ===================================================== */
+
+    .notice {
+        margin-top: 45px;
+
+        padding: 25px;
+
+        background:
+            rgba(
+                13,
+                20,
+                28,
+                0.7
+            );
+
+        border:
+            1px solid
+            #1d2b38;
+
+        border-radius: 12px;
+    }
+
+    .notice h2 {
+        margin-top: 0;
+
+        color: #ffffff;
+
+        font-size: 24px;
+    }
+
+    .notice p {
+        margin-bottom: 0;
+
+        color: #8e9ba7;
+
+        line-height: 1.7;
+    }
+
+    .legal-notice {
+        margin-top: 25px;
+
+        color: #657482;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .footer {
+        margin-top: 60px;
+
+        padding-top: 30px;
+
+        border-top:
+            1px solid
+            #18232d;
+
+        color: #586775;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+    .footer-main {
+        margin-bottom: 12px;
+    }
+
+    .footer-dot {
+        color: #35d07f;
+    }
+
+    .footer-links {
+        margin: 8px 0;
+    }
+
+    .separator {
+        margin:
+            0
+            8px;
+
+        color: #394957;
+    }
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 700px) {
 
         .container {
-            width: 90%;
-            max-width: 1050px;
-
-            margin: 0 auto;
+            width: 94%;
 
             padding:
-                60px
-                30px
-                40px;
+                40px
+                18px
+                30px;
+        }
+
+        .logo {
+            width: 150px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+        }
+
+        .description {
+            font-size: 16px;
+        }
+
+        .main-preview {
+            margin-top: 28px;
+        }
+
+        .main-preview-frame {
+            border-radius: 10px;
+        }
+
+        .features {
+            grid-template-columns: 1fr;
+        }
+
+        .integration-section {
+            padding: 22px;
+        }
+
+        .release-card {
+            padding: 20px;
+        }
+
+        .release-actions {
+            flex-direction: column;
+        }
+
+        .release-button {
+            width: 100%;
 
             text-align: center;
         }
 
-        /* =====================================================
-           HERO
-           ===================================================== */
-
-        .logo {
-            width: 190px;
-            max-width: 60%;
-
-            height: auto;
-
-            margin-bottom: 25px;
-
-            filter:
-                drop-shadow(
-                    0 0 18px
-                    rgba(127, 216, 255, 0.18)
-                );
-        }
-
-        .status {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            padding:
-                7px
-                15px;
-
-            margin-bottom: 22px;
-
-            border:
-                1px solid
-                #35d07f;
-
-            border-radius: 20px;
-
-            color: #35d07f;
-
-            background:
-                rgba(
-                    53,
-                    208,
-                    127,
-                    0.05
-                );
-
-            font-size: 13px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1.2px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-
-            background: #35d07f;
-
-            border-radius: 50%;
-
-            box-shadow:
-                0 0 10px
-                #35d07f;
-        }
-
-        h1 {
-            margin:
-                0
-                0
-                12px;
-
-            color: #ffffff;
-
-            font-size: 50px;
-
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            margin-bottom: 28px;
-
-            color: #7fd8ff;
-
-            font-size: 21px;
-        }
-
-        .description {
-            max-width: 780px;
-
-            margin:
-                0
-                auto
-                18px;
-
-            color: #aebbc7;
-
-            font-size: 17px;
-
-            line-height: 1.8;
-        }
-
-        /* =====================================================
-           MAIN APP PREVIEW
-           ===================================================== */
-
-        .main-preview {
-            max-width: 1050px;
-
-            margin:
-                38px
-                auto
-                15px;
-        }
-
-        .main-preview-frame {
-            overflow: hidden;
-
-            background:
-                rgba(
-                    13,
-                    20,
-                    28,
-                    0.9
-                );
-
-            border:
-                1px solid
-                #31536b;
-
-            border-radius: 16px;
-
-            box-shadow:
-                0 18px 55px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.45
-                ),
-                0 0 35px
-                rgba(
-                    76,
-                    232,
-                    218,
-                    0.08
-                );
-        }
-
-        .main-preview-frame img {
-            display: block;
-
-            width: 100%;
-
-            height: auto;
-        }
-
-        .main-preview-caption {
-            margin-top: 13px;
-
-            color: #677786;
-
-            font-size: 13px;
-
-            line-height: 1.6;
-        }
-
-        /* =====================================================
-           GENERAL SECTIONS
-           ===================================================== */
-
-        .section {
-            margin-top: 20px;
-        }
-
-        .section-title {
-            margin-bottom: 8px;
-
-            color: #ffffff;
-
-            font-size: 28px;
-        }
-
-        .section-description {
-            max-width: 760px;
-
-            margin:
-                0
-                auto
-                30px;
-
-            color: #7e8d99;
-
-            line-height: 1.7;
-        }
-
-        .divider {
-            width: 120px;
-            height: 1px;
-
-            margin:
-                45px
-                auto;
-
-            background:
-                linear-gradient(
-                    to right,
-                    transparent,
-                    #2c4659,
-                    transparent
-                );
-        }
-
-        /* =====================================================
-           LATEST RELEASE
-           ===================================================== */
-
-        .releases-section {
-            margin-top: 45px;
-        }
-
-        .releases-container {
-            max-width: 850px;
-
-            margin:
-                30px
-                auto
-                0;
-        }
-
-        .release-card {
-            padding: 26px;
-
-            text-align: left;
-
-            background:
-                rgba(
-                    13,
-                    20,
-                    28,
-                    0.92
-                );
-
-            border:
-                1px solid
-                #31536b;
-
-            border-radius: 12px;
-
-            box-shadow:
-                0 0 25px
-                rgba(
-                    127,
-                    216,
-                    255,
-                    0.05
-                );
-        }
-
-        .release-top {
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            flex-wrap: wrap;
-        }
-
-        .release-title {
-            margin: 0;
-
-            color: #7fd8ff;
-
-            font-size: 22px;
-        }
-
-        .latest-badge {
-            display: inline-block;
-
-            padding:
-                5px
-                11px;
-
-            border:
-                1px solid
-                #35d07f;
-
-            border-radius: 15px;
-
-            color: #35d07f;
-
-            font-size: 11px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-        }
-
-        .release-date {
-            margin-top: 8px;
-
-            color: #677786;
-
-            font-size: 13px;
-        }
-
-        .release-description {
-            margin-top: 17px;
-
-            color: #aebbc7;
-
-            font-size: 14px;
-
-            line-height: 1.65;
-        }
-
-        .release-actions {
-            display: flex;
-
-            gap: 10px;
-
-            margin-top: 22px;
-
-            flex-wrap: wrap;
-        }
-
-        .release-button {
-            display: inline-block;
-
-            padding:
-                11px
-                18px;
-
-            border:
-                1px solid
-                #31536b;
-
-            border-radius: 7px;
-
-            background: #162532;
-
-            color: #7fd8ff;
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-            text-decoration: none;
-
-            transition:
-                background 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .release-button:hover {
-            background: #1d3344;
-
-            border-color: #4c7693;
-
-            text-decoration: none;
-
-            transform:
-                translateY(-1px);
-        }
-
-        .release-button.primary {
-            background: #123021;
-
-            border-color: #35d07f;
-
-            color: #70e5a2;
-        }
-
-        .release-button.primary:hover {
-            background: #19402d;
-        }
-
-        .release-loading {
-            padding: 25px;
-
-            color: #7e8d99;
-        }
-
-        /* =====================================================
-           DISCORD
-           ===================================================== */
-
         .discord-section {
-            margin-top: 45px;
-
-            padding: 30px;
-
-            background:
-                rgba(
-                    13,
-                    20,
-                    28,
-                    0.9
-                );
-
-            border:
-                1px solid
-                #1d2b38;
-
-            border-radius: 12px;
-        }
-
-        .discord-section h2 {
-            margin-top: 0;
-
-            color: #ffffff;
-
-            font-size: 26px;
-        }
-
-        .discord-section p {
-            max-width: 720px;
-
-            margin:
-                0
-                auto
-                22px;
-
-            color: #aebbc7;
-
-            line-height: 1.7;
+            padding:
+                24px
+                20px;
         }
 
         .discord-button {
-            display: inline-block;
-
-            padding:
-                11px
-                19px;
-
-            background: #162532;
-
-            border:
-                1px solid
-                #31536b;
-
-            border-radius: 7px;
-
-            color: #7fd8ff;
-
-            font-weight: bold;
-
-            text-decoration: none;
-
-            transition:
-                background 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
+            width: 100%;
         }
+    }
 
-        .discord-button:hover {
-            background: #1d3344;
+</style>
 
-            border-color: #4c7693;
-
-            text-decoration: none;
-
-            transform:
-                translateY(-1px);
-        }
-
-        /* =====================================================
-           FEATURES
-           ===================================================== */
-
-        .features {
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    2,
-                    minmax(
-                        0,
-                        1fr
-                    )
-                );
-
-            gap: 18px;
-
-            margin-top: 30px;
-
-            text-align: left;
-        }
-
-        .feature {
-            padding: 24px;
-
-            background:
-                rgba(
-                    13,
-                    20,
-                    28,
-                    0.9
-                );
-
-            border:
-                1px solid
-                #1d2b38;
-
-            border-radius: 12px;
-
-            transition:
-                transform 0.2s ease,
-                border-color 0.2s ease,
-                background 0.2s ease;
-        }
-
-        .feature:hover {
-            transform:
-                translateY(-3px);
-
-            border-color: #31536b;
-
-            background: #101923;
-        }
-
-        .feature h3 {
-            margin:
-                0
-                0
-                10px;
-
-            color: #7fd8ff;
-
-            font-size: 18px;
-        }
-
-        .feature p {
-            margin: 0;
-
-            color: #8e9ba7;
-
-            font-size: 14px;
-
-            line-height: 1.65;
-        }
-
-        /* =====================================================
-           STREAMING INTEGRATIONS
-           ===================================================== */
-
-        .integration-section {
-            margin-top: 50px;
-
-            padding: 32px;
-
-            text-align: left;
-
-            background:
-                rgba(
-                    13,
-                    20,
-                    28,
-                    0.92
-                );
-
-            border:
-                1px solid
-                #263a49;
-
-            border-radius: 14px;
-        }
-
-        .integration-section h2 {
-            margin-top: 0;
-
-            color: #ffffff;
-        }
-
-        .integration-section h3 {
-            margin-top: 30px;
-
-            color: #7fd8ff;
-        }
-
-        .integration-section p {
-            color: #aebbc7;
-
-            line-height: 1.75;
-        }
-
-        .integration-section strong {
-            color: #ffffff;
-        }
-
-        /* =====================================================
-           NOTICES
-           ===================================================== */
-
-        .notice {
-            margin-top: 45px;
-
-            padding: 25px;
-
-            background:
-                rgba(
-                    13,
-                    20,
-                    28,
-                    0.7
-                );
-
-            border:
-                1px solid
-                #1d2b38;
-
-            border-radius: 12px;
-        }
-
-        .notice h2 {
-            margin-top: 0;
-
-            color: #ffffff;
-
-            font-size: 24px;
-        }
-
-        .notice p {
-            margin-bottom: 0;
-
-            color: #8e9ba7;
-
-            line-height: 1.7;
-        }
-
-        .legal-notice {
-            margin-top: 25px;
-
-            color: #657482;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-        }
-
-        /* =====================================================
-           FOOTER
-           ===================================================== */
-
-        .footer {
-            margin-top: 60px;
-
-            padding-top: 30px;
-
-            border-top:
-                1px solid
-                #18232d;
-
-            color: #586775;
-
-            font-size: 13px;
-
-            line-height: 1.8;
-        }
-
-        .footer-main {
-            margin-bottom: 12px;
-        }
-
-        .footer-dot {
-            color: #35d07f;
-        }
-
-        .footer-links {
-            margin: 8px 0;
-        }
-
-        .separator {
-            margin:
-                0
-                8px;
-
-            color: #394957;
-        }
-
-        /* =====================================================
-           MOBILE
-           ===================================================== */
-
-        @media (max-width: 700px) {
-
-            .container {
-                width: 94%;
-
-                padding:
-                    40px
-                    18px
-                    30px;
-            }
-
-            .logo {
-                width: 150px;
-            }
-
-            h1 {
-                font-size: 36px;
-            }
-
-            .subtitle {
-                font-size: 18px;
-            }
-
-            .description {
-                font-size: 16px;
-            }
-
-            .main-preview {
-                margin-top: 28px;
-            }
-
-            .main-preview-frame {
-                border-radius: 10px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .integration-section {
-                padding: 22px;
-            }
-
-            .release-card {
-                padding: 20px;
-            }
-
-            .release-actions {
-                flex-direction: column;
-            }
-
-            .release-button {
-                width: 100%;
-
-                text-align: center;
-            }
-
-            .discord-section {
-                padding:
-                    24px
-                    20px;
-            }
-
-            .discord-button {
-                width: 100%;
-            }
-        }
-
-    </style>
 </head>
 
 <body>
 
 <main class="container">
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
+<!-- =====================================================
+     HERO
+     ===================================================== -->
 
-    <img
-        src="IconOnly_Transparent.png"
-        alt="ZDubLee's Airside Companion Logo"
-        class="logo"
-    >
+<img
+    src="IconOnly_Transparent.png"
+    alt="ZDubLee's Airside Companion Logo"
+    class="logo"
+>
 
-    <br>
+<br>
 
-    <div class="status">
+<div class="status">
 
-        <span class="status-dot"></span>
+    <span class="status-dot"></span>
 
-        Airside Companion
+    Airside Companion
 
-    </div>
+</div>
 
-    <h1>
-        ZDubLee's Airside Companion
-    </h1>
+<h1>
+    ZDubLee's Airside Companion
+</h1>
 
-    <div class="subtitle">
-        ATC Companion • YouTube &amp; Twitch Integration • OBS Overlays
-    </div>
+<div class="subtitle">
+    ATC Companion • YouTube &amp; Twitch Integration • OBS Overlays
+</div>
 
-    <p class="description">
-        ZDubLee's Airside Companion is a desktop companion
-        application for flight simulation, virtual air traffic
-        control, livestreaming, and content creation.
-    </p>
+<p class="description">
+    ZDubLee's Airside Companion is a desktop companion
+    application for flight simulation, virtual air traffic
+    control, livestreaming, and content creation.
+</p>
 
-    <p class="description">
-        The application works alongside Airside ATC and
-        Microsoft Flight Simulator to provide useful airport,
-        simulator, traffic, weather, ATC, YouTube, Twitch,
-        and streaming information through a companion interface
-        and OBS-compatible browser overlays.
-    </p>
+<p class="description">
+    The application works alongside Airside ATC and
+    Microsoft Flight Simulator to provide useful airport,
+    simulator, traffic, weather, ATC, YouTube, Twitch,
+    and streaming information through a companion interface
+    and OBS-compatible browser overlays.
+</p>
 
-    <!-- =====================================================
-         MAIN APP PREVIEW
-         ===================================================== -->
+<!-- =====================================================
+     MAIN APP PREVIEW
+     ===================================================== -->
 
-    <div class="main-preview">
+<div class="main-preview">
 
-        <div class="main-preview-frame">
+    <div class="main-preview-frame">
 
-            <img
-                src="images/airside-companion-preview.png"
-                alt="ZDubLee's Airside Companion showing virtual ATC information, OBS overlays, flight boards, Twitch chat, and YouTube chat"
-            >
-
-        </div>
-
-        <div class="main-preview-caption">
-
-            ZDubLee's Airside Companion brings virtual ATC,
-            flight information, OBS overlays, and YouTube and
-            Twitch streaming tools together in one companion
-            application.
-
-        </div>
-
-    </div>
-
-    <!-- =====================================================
-         LATEST RELEASE
-         ===================================================== -->
-
-    <section class="releases-section">
-
-        <h2 class="section-title">
-            Latest Release
-        </h2>
-
-        <p class="section-description">
-
-            Download the newest version of
-            ZDubLee's Airside Companion.
-
-        </p>
-
-        <div
-            id="releases"
-            class="releases-container"
+        <img
+            src="images/airside-companion-preview.png"
+            alt="ZDubLee's Airside Companion showing virtual ATC information, OBS overlays, flight boards, Twitch chat, and YouTube chat"
         >
 
-            <div class="release-loading">
-                Loading latest release...
-            </div>
+    </div>
+
+    <div class="main-preview-caption">
+
+        ZDubLee's Airside Companion brings virtual ATC,
+        flight information, OBS overlays, and YouTube and
+        Twitch streaming tools together in one companion
+        application.
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     LATEST RELEASE
+     ===================================================== -->
+
+<section class="releases-section">
+
+    <h2 class="section-title">
+        Latest Release
+    </h2>
+
+    <p class="section-description">
+
+        Download the newest version of
+        ZDubLee's Airside Companion.
+
+    </p>
+
+    <div
+        id="releases"
+        class="releases-container"
+    >
+
+        <div class="release-loading">
+            <a class="release-button primary" href="https://github.com/ZDubLee/zdublee.github.io/releases/latest">View Downloads on GitHub</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     DISCORD
+     ===================================================== -->
+
+<section class="discord-section">
+
+    <h2>
+        Community Support
+    </h2>
+
+    <p>
+
+        Need help with ZDubLee's Airside Companion,
+        have an idea for a new feature, or run into a
+        problem?
+
+        Join the Discord community for troubleshooting,
+        feedback, feature requests, application updates,
+        and discussion with other users.
+
+    </p>
+
+    <a
+        href="https://discord.gg/j5czsStyBx"
+        class="discord-button"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        Join the Discord
+
+    </a>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- =====================================================
+     FEATURES
+     ===================================================== -->
+
+<section class="section">
+
+    <h2 class="section-title">
+
+        Built for Virtual Air Traffic Control
+
+    </h2>
+
+    <p class="section-description">
+
+        Airside Companion brings simulator, airport,
+        controller, and livestream information together
+        in one stream-friendly application.
+
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <h3>
+                Airport Information
+            </h3>
+
+            <p>
+
+                View airport information, active runways,
+                frequencies, session information, and
+                other useful virtual ATC data.
+
+            </p>
 
         </div>
 
-    </section>
+        <div class="feature">
 
-    <!-- =====================================================
-         DISCORD
-         ===================================================== -->
+            <h3>
+                OBS Browser Overlays
+            </h3>
 
-    <section class="discord-section">
+            <p>
 
-        <h2>
-            Community Support
-        </h2>
+                Display selected information through
+                browser-source overlays designed for OBS
+                and flight simulation livestreams.
 
-        <p>
+            </p>
 
-            Need help with ZDubLee's Airside Companion,
-            have an idea for a new feature, or run into a
-            problem?
+        </div>
 
-            Join the Discord community for troubleshooting,
-            feedback, feature requests, application updates,
-            and discussion with other users.
+        <div class="feature">
 
-        </p>
+            <h3>
+                Live Simulator Data
+            </h3>
+
+            <p>
+
+                Update supported airport, aircraft,
+                traffic, and session information as the
+                simulator environment changes.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>
+                Weather &amp; ATIS
+            </h3>
+
+            <p>
+
+                Display supported airport weather and
+                ATIS information for the active virtual
+                ATC session.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>
+                Tower Radar
+            </h3>
+
+            <p>
+
+                Radar-style traffic displays provide
+                additional situational awareness for
+                virtual controllers.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>
+                Ground Radar
+            </h3>
+
+            <p>
+
+                View supported aircraft movement on and
+                around airport surfaces in a dedicated
+                ground display.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>
+                YouTube Integration
+            </h3>
+
+            <p>
+
+                Connect an authorized YouTube account to
+                use supported livestream information,
+                chat, Super Chats, memberships, channel
+                information, and streaming overlays.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>
+                Twitch Integration
+            </h3>
+
+            <p>
+
+                Connect an authorized Twitch account to
+                use supported channel, livestream, chat,
+                and engagement information within the
+                companion application and OBS overlays.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     STREAMING INTEGRATIONS
+     ===================================================== -->
+
+<section class="integration-section">
+
+    <h2>
+        YouTube &amp; Twitch Integration
+    </h2>
+
+    <p>
+
+        Connecting a YouTube or Twitch account is optional.
+
+        Airside Companion's core flight simulation and
+        virtual ATC functionality does not require a
+        streaming account connection.
+
+    </p>
+
+    <h3>
+        Google &amp; YouTube
+    </h3>
+
+    <p>
+
+        When a user chooses to connect YouTube,
+
+        <strong>
+            ZDubLee's Airside Companion uses Google OAuth
+            and YouTube API Services
+        </strong>
+
+        to identify the authorized YouTube channel and
+        provide supported livestream functionality.
+
+    </p>
+
+    <p>
+
+        Depending on the features enabled and permissions
+        granted by the user, this may include livestream
+        information, live chat, channel information,
+        supported subscriber or channel statistics,
+        Super Chats, Super Stickers, memberships, and
+        related livestream activity.
+
+    </p>
+
+    <h3>
+        Twitch
+    </h3>
+
+    <p>
+
+        When a user chooses to connect Twitch,
+
+        <strong>
+            ZDubLee's Airside Companion uses Twitch OAuth
+            and Twitch API Services
+        </strong>
+
+        to identify the authorized Twitch account and
+        provide supported livestream functionality.
+
+    </p>
+
+    <p>
+
+        Depending on the features enabled and permissions
+        granted by the user, this may include Twitch
+        channel information, livestream status, chat,
+        and supported viewer or engagement events made
+        available through Twitch.
+
+    </p>
+
+    <p>
+
+        Streaming-service information is used only to
+        provide user-facing livestream tools and,
+        when selected by the user, OBS-compatible
+        overlays.
+
+    </p>
+
+    <p>
+
+        Users can disconnect their connected accounts
+        and revoke authorization at any time.
+
+    </p>
+
+    <p>
+
+        For complete information about how account and
+        streaming data is handled, review our
+
+        <a href="privacy.html">
+            Privacy Policy
+        </a>.
+
+    </p>
+
+</section>
+
+<!-- =====================================================
+     SIMULATION DISCLAIMER
+     ===================================================== -->
+
+<section class="notice">
+
+    <h2>
+        For Simulation Use Only
+    </h2>
+
+    <p>
+
+        ZDubLee's Airside Companion is designed exclusively
+        for flight simulation, virtual air traffic control,
+        livestreaming, and entertainment.
+
+        It is not intended or approved for real-world
+        aircraft navigation, dispatch, weather decisions,
+        or air traffic control.
+
+    </p>
+
+</section>
+
+<!-- =====================================================
+     DEVELOPMENT
+     ===================================================== -->
+
+<section class="notice">
+
+    <h2>
+        Development in Progress
+    </h2>
+
+    <p>
+
+        ZDubLee's Airside Companion is actively being
+        developed.
+
+        Features, integrations, overlay options,
+        and controller tools may change as development
+        continues.
+
+    </p>
+
+</section>
+
+<!-- =====================================================
+     LEGAL NOTICE
+     ===================================================== -->
+
+<p class="legal-notice">
+
+    ZDubLee's Airside Companion is an independent companion
+    application and is not sponsored, endorsed, or operated
+    by Google, YouTube, Twitch, Microsoft, OBS Project, or
+    Airside unless expressly stated otherwise.
+
+    All third-party trademarks belong to their respective
+    owners.
+
+</p>
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-main">
+
+        <span class="footer-dot">
+            ●
+        </span>
+
+        ZDubLee's Airside Companion
+
+    </div>
+
+    <div class="footer-links">
+
+        <a href="privacy.html">
+            Privacy Policy
+        </a>
+
+        <span class="separator">
+            •
+        </span>
+
+        <a href="terms.html">
+            Terms of Service
+        </a>
+
+        <span class="separator">
+            •
+        </span>
 
         <a
             href="https://discord.gg/j5czsStyBx"
-            class="discord-button"
             target="_blank"
             rel="noopener noreferrer"
         >
-
-            Join the Discord
-
+            Discord Support
         </a>
 
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- =====================================================
-         FEATURES
-         ===================================================== -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-
-            Built for Virtual Air Traffic Control
-
-        </h2>
-
-        <p class="section-description">
-
-            Airside Companion brings simulator, airport,
-            controller, and livestream information together
-            in one stream-friendly application.
-
-        </p>
-
-        <div class="features">
-
-            <div class="feature">
-
-                <h3>
-                    Airport Information
-                </h3>
-
-                <p>
-
-                    View airport information, active runways,
-                    frequencies, session information, and
-                    other useful virtual ATC data.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    OBS Browser Overlays
-                </h3>
-
-                <p>
-
-                    Display selected information through
-                    browser-source overlays designed for OBS
-                    and flight simulation livestreams.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    Live Simulator Data
-                </h3>
-
-                <p>
-
-                    Update supported airport, aircraft,
-                    traffic, and session information as the
-                    simulator environment changes.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    Weather &amp; ATIS
-                </h3>
-
-                <p>
-
-                    Display supported airport weather and
-                    ATIS information for the active virtual
-                    ATC session.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    Tower Radar
-                </h3>
-
-                <p>
-
-                    Radar-style traffic displays provide
-                    additional situational awareness for
-                    virtual controllers.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    Ground Radar
-                </h3>
-
-                <p>
-
-                    View supported aircraft movement on and
-                    around airport surfaces in a dedicated
-                    ground display.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    YouTube Integration
-                </h3>
-
-                <p>
-
-                    Connect an authorized YouTube account to
-                    use supported livestream information,
-                    chat, Super Chats, memberships, channel
-                    information, and streaming overlays.
-
-                </p>
-
-            </div>
-
-            <div class="feature">
-
-                <h3>
-                    Twitch Integration
-                </h3>
-
-                <p>
-
-                    Connect an authorized Twitch account to
-                    use supported channel, livestream, chat,
-                    and engagement information within the
-                    companion application and OBS overlays.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =====================================================
-         STREAMING INTEGRATIONS
-         ===================================================== -->
-
-    <section class="integration-section">
-
-        <h2>
-            YouTube &amp; Twitch Integration
-        </h2>
-
-        <p>
-
-            Connecting a YouTube or Twitch account is optional.
-
-            Airside Companion's core flight simulation and
-            virtual ATC functionality does not require a
-            streaming account connection.
-
-        </p>
-
-        <h3>
-            Google &amp; YouTube
-        </h3>
-
-        <p>
-
-            When a user chooses to connect YouTube,
-
-            <strong>
-                ZDubLee's Airside Companion uses Google OAuth
-                and YouTube API Services
-            </strong>
-
-            to identify the authorized YouTube channel and
-            provide supported livestream functionality.
-
-        </p>
-
-        <p>
-
-            Depending on the features enabled and permissions
-            granted by the user, this may include livestream
-            information, live chat, channel information,
-            supported subscriber or channel statistics,
-            Super Chats, Super Stickers, memberships, and
-            related livestream activity.
-
-        </p>
-
-        <h3>
-            Twitch
-        </h3>
-
-        <p>
-
-            When a user chooses to connect Twitch,
-
-            <strong>
-                ZDubLee's Airside Companion uses Twitch OAuth
-                and Twitch API Services
-            </strong>
-
-            to identify the authorized Twitch account and
-            provide supported livestream functionality.
-
-        </p>
-
-        <p>
-
-            Depending on the features enabled and permissions
-            granted by the user, this may include Twitch
-            channel information, livestream status, chat,
-            and supported viewer or engagement events made
-            available through Twitch.
-
-        </p>
-
-        <p>
-
-            Streaming-service information is used only to
-            provide user-facing livestream tools and,
-            when selected by the user, OBS-compatible
-            overlays.
-
-        </p>
-
-        <p>
-
-            Users can disconnect their connected accounts
-            and revoke authorization at any time.
-
-        </p>
-
-        <p>
-
-            For complete information about how account and
-            streaming data is handled, review our
-
-            <a href="privacy.html">
-                Privacy Policy
-            </a>.
-
-        </p>
-
-    </section>
-
-    <!-- =====================================================
-         SIMULATION DISCLAIMER
-         ===================================================== -->
-
-    <section class="notice">
-
-        <h2>
-            For Simulation Use Only
-        </h2>
-
-        <p>
-
-            ZDubLee's Airside Companion is designed exclusively
-            for flight simulation, virtual air traffic control,
-            livestreaming, and entertainment.
-
-            It is not intended or approved for real-world
-            aircraft navigation, dispatch, weather decisions,
-            or air traffic control.
-
-        </p>
-
-    </section>
-
-    <!-- =====================================================
-         DEVELOPMENT
-         ===================================================== -->
-
-    <section class="notice">
-
-        <h2>
-            Development in Progress
-        </h2>
-
-        <p>
-
-            ZDubLee's Airside Companion is actively being
-            developed.
-
-            Features, integrations, overlay options,
-            and controller tools may change as development
-            continues.
-
-        </p>
-
-    </section>
-
-    <!-- =====================================================
-         LEGAL NOTICE
-         ===================================================== -->
-
-    <p class="legal-notice">
-
-        ZDubLee's Airside Companion is an independent companion
-        application and is not sponsored, endorsed, or operated
-        by Google, YouTube, Twitch, Microsoft, OBS Project, or
-        Airside unless expressly stated otherwise.
-
-        All third-party trademarks belong to their respective
-        owners.
-
-    </p>
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-main">
-
-            <span class="footer-dot">
-                ●
-            </span>
-
-            ZDubLee's Airside Companion
-
-        </div>
-
-        <div class="footer-links">
-
-            <a href="privacy.html">
-                Privacy Policy
-            </a>
-
-            <span class="separator">
-                •
-            </span>
-
-            <a href="terms.html">
-                Terms of Service
-            </a>
-
-            <span class="separator">
-                •
-            </span>
-
-            <a
-                href="https://discord.gg/j5czsStyBx"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Discord Support
-            </a>
-
-            <span class="separator">
-                •
-            </span>
-
-            <a
-                href="https://www.youtube.com/t/terms"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                YouTube Terms
-            </a>
-
-            <span class="separator">
-                •
-            </span>
-
-            <a
-                href="https://www.twitch.tv/p/terms-of-service"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Twitch Terms
-            </a>
-
-        </div>
-
-        <div>
-
-            © 2026 ZDubLee's Airside Companion
-
-        </div>
-
-    </footer>
+        <span class="separator">
+            •
+        </span>
+
+        <a
+            href="https://www.youtube.com/t/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            YouTube Terms
+        </a>
+
+        <span class="separator">
+            •
+        </span>
+
+        <a
+            href="https://www.twitch.tv/p/terms-of-service"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Twitch Terms
+        </a>
+
+    </div>
+
+    <div>
+
+        © 2026 ZDubLee's Airside Companion
+
+    </div>
+
+</footer>
 
 </main>
 
@@ -1391,8 +1393,20 @@
     const githubRepo =
         "zdublee.github.io";
 
-    const latestPortableDownload =
-        "https://github.com/ZDubLee/zdublee.github.io/releases/latest/download/Airside-Stream-Companion-PORTABLE.zip";
+    const latestReleasePage =
+        `https://github.com/${githubOwner}/${githubRepo}/releases/latest`;
+
+    function portableDownload(assets) {
+        const candidates = (Array.isArray(assets) ? assets : []).filter(asset =>
+            asset && asset.state === "uploaded" &&
+            /^(?:Airside-)?Stream-Companion(?:-v?[0-9]+(?:\.[0-9]+)*)?-PORTABLE\.zip$/i.test(asset.name) &&
+            typeof asset.browser_download_url === "string" &&
+            asset.browser_download_url.startsWith(
+                `https://github.com/${githubOwner}/${githubRepo}/releases/download/`
+            )
+        );
+        return candidates.length === 1 ? candidates[0].browser_download_url : null;
+    }
 
     const releasesContainer =
         document.getElementById(
@@ -1429,6 +1443,8 @@
 
             const release =
                 await response.json();
+
+            const download = portableDownload(release.assets);
 
             const releaseDate =
 
@@ -1491,10 +1507,10 @@
                     <div class="release-actions">
 
                         <a
-                            href="${latestPortableDownload}"
+                            href="${download || latestReleasePage}"
                             class="release-button primary"
                         >
-                            Download Latest Release
+                            ${download ? "Download Latest Release" : "View Downloads on GitHub"}
                         </a>
 
                         <a
@@ -1539,29 +1555,14 @@
 
                     <div class="release-description">
 
-                        Release information could not be
-                        loaded right now, but the latest
-                        portable version is still available
-                        for download.
+                        Open the latest release on GitHub to find the portable ZIP under Assets.
 
                     </div>
 
                     <div class="release-actions">
 
-                        <a
-                            href="${latestPortableDownload}"
-                            class="release-button primary"
-                        >
-                            Download Latest Release
-                        </a>
-
-                        <a
-                            href="https://github.com/${githubOwner}/${githubRepo}/releases/latest"
-                            class="release-button"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            View Release on GitHub
+                        <a href="${latestReleasePage}" class="release-button primary">
+                            View Downloads on GitHub
                         </a>
 
                     </div>
